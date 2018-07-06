@@ -2,28 +2,27 @@ package com.question.handlers;
 
 import com.question.beans.Role;
 import com.question.service.IRoleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RoleController implements Controller {
+@Controller
+@RequestMapping("/test")
+public class RoleController {
 
+    @Resource(name = "roleService")
     private IRoleService roleService;
 
-    public void setRoleService(IRoleService roleService) {
-        this.roleService = roleService;
-    }
-
-    @Override
-    public ModelAndView handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
-
-        String roleName = httpServletRequest.getParameter("roleName");
+    @RequestMapping("/register.do")
+    public String doRegister(String roleName) {
         Role role = new Role(roleName);
-
-        System.out.print(role);
         roleService.addRole(role);
-        return new ModelAndView("/welcome.jsp");
+        return "/welcome.jsp";
     }
 }

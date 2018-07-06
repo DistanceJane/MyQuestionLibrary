@@ -15,7 +15,10 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
     <!--注册role控制器-->
-    <bean id="/test/register.do" class="com.question.handlers.RoleController">
-        <property name="roleService" ref="roleService"/>
-    </bean>
+    <!--<bean id="/test/register.do" class="com.question.handlers.RoleController">-->
+        <!--<property name="roleService" ref="roleService"/>-->
+    <!--</bean>-->
+
+
+    <context:component-scan base-package="com.question.handlers"/>
 </beans>

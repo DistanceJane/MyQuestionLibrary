@@ -6,4 +6,17 @@
     <insert id="insertRole">
         insert into role(roleName) values(#{roleName})
     </insert>
+    <delete id="deleteRole">
+        delete from role where id = #{id}
+    </delete>
+    <update id="updateRole">
+        update role set roleName = #{roleName} where id = #{id}
+    </update>
+    <select id="selectRoleById">
+        select * from role where id = #{id}
+    </select>
+
+    <select id="listRole" resultType="Role">
+        select * from role
+    </select>
 </mapper>

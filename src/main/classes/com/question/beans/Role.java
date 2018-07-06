@@ -1,7 +1,12 @@
 package com.question.beans;
 
+/**
+ * 角色实体
+ */
 public class Role {
+    // id
     private Integer id;
+    // 角色名
     private String roleName;
 
     public Role() {
