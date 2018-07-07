@@ -1,4 +1,6 @@
 package com.question.service.impl;
 
-public class LibraryServiceImpl {
+import com.question.service.ILibraryService;
+
+public class LibraryServiceImpl implements ILibraryService {
 }

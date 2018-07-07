@@ -1,4 +1,6 @@
 package com.question.service.impl;
 
-public class NoteServiceImpl {
+import com.question.service.INoteService;
+
+public class NoteServiceImpl implements INoteService {
 }

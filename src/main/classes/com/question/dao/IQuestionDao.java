@@ -1,0 +1,159 @@
+package com.question.dao;
+
+import com.question.beans.*;
+
+import java.util.List;
+
+public interface IQuestionDao {
+
+    /**
+     * 录入一道选择题
+     * @param choice
+     */
+    void insertChoice(Choice choice);
+
+    /**
+     * 根据id删除一道选择题
+     * @param id
+     */
+    void deleteChoice(int id);
+
+    /**
+     * 更新某一个选择题
+     * @param choice
+     */
+    void updateChoice(Choice choice);
+
+    /**
+     * 根据id查询某一个选择题
+     * @param id
+     * @return
+     */
+    Choice selectChoiceById(int id);
+
+    /**
+     * 获取某个章节下的所有选择题
+     * @param chapter
+     * @return
+     */
+    List<Choice> listChoiceUnderChapter(Chapter chapter);
+
+    /**
+     * 根据题目模糊搜索试题
+     * @param title
+     * @return
+     */
+    List<Choice> listChoiceByTitle(String title);
+
+
+    /**
+     * 添加某个选择题的一个选项
+     * @param option
+     */
+    void insertOption(Option option);
+
+    /**
+     * 删除某个选择题的一个选项
+     * @param id
+     */
+    void deleteOption(int id);
+
+    /**
+     * 修改某个选择题的某个选项
+     * @param option
+     */
+    void updateOption(Option option);
+
+    /**
+     * 根据id查询某个选择题的选项
+     * @param id
+     * @return
+     */
+    Option selectOptionById(int id);
+
+    /**
+     * 获取某个试题下的所有选项
+     * @param choice
+     * @return
+     */
+    List<Option> listOptionUnderChoice(Choice choice);
+
+    /**
+     * 录入一道判断题
+     * @param judgement
+     */
+    void insertJudgement(Judgement judgement);
+
+    /**
+     * 根据删除一道判断题
+     * @param id
+     */
+    void deleteJudgement(int id);
+
+    /**
+     * 更新一道判断题
+     * @param judgement
+     */
+    void updateJudgement(Judgement judgement);
+
+    /**
+     * 根据id查询某道判断题
+     * @param id
+     * @return
+     */
+    Judgement selectJudgementById(int id);
+
+    /**
+     * 获取某个章节下的所有判断题
+     * @param chapter
+     * @return
+     */
+    List<Judgement> listJudgementUnderChapter(Chapter chapter);
+
+    /**
+     * 根据题目模糊查询判断题
+     * @param title
+     * @return
+     */
+    List<Judgement> listJudgementByTitle(String title);
+
+
+    /**
+     * 录入一道简答题
+     * @param shorter
+     */
+    void insertShorter(Shorter shorter);
+
+    /**
+     * 根据删除一道简答题
+     * @param id
+     */
+    void deleteShorter(int id);
+
+    /**
+     * 更新一道简答题
+     * @param shorter
+     */
+    void updateShorter(Shorter shorter);
+
+    /**
+     * 根据id查询某个简答题
+     * @param id
+     * @return
+     */
+    Shorter selectShorterById(int id);
+
+    /**
+     * 获取某个章节下的所有简答题
+     * @param chapter
+     * @return
+     */
+    List<Shorter> listShorterUnderChapter(Chapter chapter);
+
+    /**
+     * 根据题目模糊搜索简答题
+     * @param title
+     * @return
+     */
+    List<Shorter> listShorterByTitle(String title);
+}

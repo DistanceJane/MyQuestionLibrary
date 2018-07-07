@@ -12,6 +12,8 @@ public class Shorter {
     private Integer level;
     // 录入员
     private User user;
+    // 所属章节
+    private Chapter chapter;
 
     public Shorter() {
     }
@@ -56,6 +58,14 @@ public class Shorter {
         this.user = user;
     }
 
+    public Chapter getChapter() {
+        return chapter;
+    }
+
+    public void setChapter(Chapter chapter) {
+        this.chapter = chapter;
+    }
+
     @Override
     public String toString() {
         return "Shorter{" +
@@ -64,6 +74,7 @@ public class Shorter {
                 ", Answer='" + Answer + '\'' +
                 ", level=" + level +
                 ", user=" + user +
+                ", chapter=" + chapter +
                 '}';
     }
 }

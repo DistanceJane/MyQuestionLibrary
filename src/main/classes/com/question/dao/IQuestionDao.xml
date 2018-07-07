@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.question.dao.IQuestionDao">
+    <!--录入一道选择题-->
+    <insert id="insertChoice">
+        insert into choice(title, picture, level, chapterId, userId) values (#{title}, #{picture}, #{level}, #{chapter.id}, #{user.id})
+    </insert>
+
+    <!--根据id删除一道选择题-->
+    <delete id="deleteChoice">
+        delete from choice where id = #{id}
+    </delete>
+
+    <!--更新某一个选择题-->
+    <update id="updateChoice">
+        update choice set title = #{title},picture = #{picture}, level = #{level}
+    </update>
+
+    <!--根据id查询某一个选择题-->
+    <select id="selectChoiceById">
+        select * from choice where  id = #{id}
+    </select>
+
+    <!--获取某个章节下的所有选择题-->
+    <select id="listChoiceUnderChapter" resultType="Choice">
+        select * from choice where chapterId = #{id}
+    </select>
+
+    <!--根据题目模糊搜索试题-->
+    <select id="listChoiceByTitle" resultType="Choice">
+        select * from choice where title like '%' #{title} '%'
+    </select>
+
+    <!--添加某个选择题的一个选项-->
+    <insert id="insertOption">
+        insert into option(choiceId, header, content, correct) values (#{choice.id}, #{header}, #{content}, #{correct})
+    </insert>
+
+    <!--删除某个选择题的一个选项-->
+    <delete id="deleteOption">
+        delete from option where id = #{id}
+    </delete>
+
+    <!--修改某个选择题的某个选项-->
+    <update id="updateOption">
+        update option set header = #{header}, content = #{content}, correct = #{correct} where id = #{id}
+    </update>
+
+    <!--根据id查询某个选择题的选项-->
+    <select id="selectOptionById">
+        select * from option where id = #{id}
+    </select>
+
+    <!--获取某个试题下的所有选项-->
+    <select id="listOptionUnderChoice" resultType="Option">
+        select * from OPTION where choiceId = #{id}
+    </select>
+
+    <!--录入一道判断题-->
+    <insert id="insertJudgement">
+        insert into judgement(title, answer, level, chapterId, userId) values (#{title}, #{answer}, #{level}, #{chapter.id}, #{user.id})
+    </insert>
+
+    <!--根据删除一道判断题-->
+    <delete id="deleteJudgement">
+        delete from judgement where id = #{id}
+    </delete>
+
+    <!--更新一道判断题-->
+    <update id="updateJudgement">
+        update set title = #{title}, answer = #{answer}, level = #{level} where id = #{id}
+    </update>
+
+    <!--根据id查询某道判断题-->
+    <select id="selectJudgementById">
+        select * from judgement where id = #{id}
+    </select>
+
+    <!--获取某个章节下的所有判断题-->
+    <select id="listJudgementUnderChapter" resultType="Judgement">
+        select * from judgement where chapterId = #{id}
+    </select>
+
+    <!--根据题目模糊查询判断题-->
+    <select id="listJudgementByTitle" resultType="Judgement">
+        select * from judgement where title like '%' #{title} '%'
+    </select>
+
+    <!--录入一道简答题-->
+    <insert id="insertShorter">
+        insert into Shorter(title, answer, level) values (#{title}, #{answer}, #{level})
+    </insert>
+
+    <!--根据删除一道简答题-->
+    <delete id="deleteShorter">
+        delete from shorter where id = #{id}
+    </delete>
+
+    <!--更新一道简答题-->
+    <update id="updateShorter">
+        update shorter set title = #{title}, answer = #{answer}, level = #{level} where id = #{id}
+    </update>
+
+    <!--根据id查询某个简答题-->
+    <select id="selectShorterById">
+        select * from shorter where id = #{id}
+    </select>
+
+    <!--获取某个章节下的所有简答题-->
+    <select id="listShorterUnderChapter">
+        select * from shorter where chapterId = #{id}
+    </select>
+
+    <!--根据题目模糊搜索简答题-->
+    <select id="listShorterByTitle">
+        select * from shorter where title like '%' #{title} '%'
+    </select>
+
+</mapper>

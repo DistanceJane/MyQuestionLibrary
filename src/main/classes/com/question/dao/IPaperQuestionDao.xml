@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.question.dao.IPaperQuestionDao">
+    <!--新增一道试卷上的选择题-->
+    <insert id="insertChoiceQuestion">
+        insert into choiceQuestion(paperId, choiceId, myAnswer, score, mutiple)
+        values (#{paper.id}, #{choice.id}, #{myAnswer}, #{score}, #{mutiple})
+    </insert>
+
+    <!--根据id查询试卷上的选择题-->
+    <delete id="selectChoiceQuestionById">
+        delete from choiceQuestion where id = #{id}
+    </delete>
+
+    <!--列举某张试卷上的所有选择题-->
+    <select id="listChoiceQuestionUnderPaper" resultType="ChoiceQuestion">
+        select * from choiceQuestion where paperId = #{id}
+    </select>
+
+    <!--新增一道试卷上的判断题-->
+    <insert id="insertJudgementQuestion">
+        insert into judgementQuestion(paperId, judgementId, myAnswer, score)
+        values (#{paper.id}, #{judgement.id}, #{myAnswer}, #{score})
+    </insert>
+
+    <!--根据id查询试卷上的判断题-->
+    <select id="selectJudgementQuestionById">
+        select * from judgementQuestion where id = #{id}
+    </select>
+
+    <!--获取试卷上的所有判断题-->
+    <select id="listJudgementQuestionUnderPaper" resultType="JudgementQuestion">
+        select * from judgementQuestion where paperId = #{id}
+    </select>
+
+    <!--新增一道试卷上的简答题-->
+    <insert id="insertShorterQuestion">
+        insert into shorterQuestion(paperId, shorterId, myAnswer, score)
+        values (#{paper.id}, #{shorter.id}, #{myAnswer}, #{score})
+    </insert>
+
+    <!--根据id查询试卷上的简答题-->
+    <select id="selectShorterQuestionById">
+        select * shorterQuestion where id = #{id}
+    </select>
+
+    <!--获取某一试卷上的所有简答题-->
+    <select id="listShorterQuestionUnderPaper" resultType="ShorterQuestion">
+        select * from shorterQuestion where paperId = #{id}
+    </select>
+
+    <!--添加一条错题记录-->
+    <insert id="insertFail">
+        insert into fail(typeId, questionId, userId) values (#{typeId}, #{questionId}, #{user.id})
+    </insert>
+
+    <!--删除一条错题记录-->
+    <delete id="deleteFail">
+        delete from fail where id = #{id}
+    </delete>
+
+    <!--查询一道错题记录-->
+    <select id="selectFailBuId">
+        select * from fail where id = #{id}
+    </select>
+
+    <!--获取某一用户的所有错题集-->
+    <select id="listFailUnderUser">
+        select * from fail where userId = #{id}
+    </select>
+</mapper>
