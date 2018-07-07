@@ -13,19 +13,25 @@ public interface INoteDao {
     void insertNote(Note note);
 
     /**
-     * 更具id删除一条笔记
+     * 根据id删除一条笔记
      * @param id
      */
     void deleteNote(int id);
 
     /**
-     * 更新笔记
+     * 更新笔记内容
      * @param note
      */
-    void updateNote(Note note);
+    void updateNoteContent(Note note);
 
     /**
-     * 更具id查询笔记
+     * 更新笔记获赞数
+     * @param note
+     */
+    void updateNoteLikes(Note note);
+
+    /**
+     * 根据id查询笔记
      * @param id
      * @return
      */
@@ -62,20 +68,20 @@ public interface INoteDao {
 
     /**
      * 新增一条点赞记录
-     * @param like
+     * @param applaud
      */
-    void insertLike(Like like);
+    void insertApplaud(Applaud applaud);
 
     /**
      * 更新点赞记录
      * @param cancel
      */
-    void updateLike(int cancel);
+    void updateApplaud(int cancel);
 
     /**
      * 查询点赞记录
      * @param id
      * @return
      */
-    Like selectLikeById(int id);
+    Applaud selectApplaudById(int id);
 }

@@ -3,5 +3,64 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.question.dao.INoteDao">
+    <!--新增一条笔记-->
+    <insert id="insertNote">
+        insert into note(typeId, questionId, content, like, time, userId)
+        values (#{typeId}, #{questionId}, #{content}, #{like}, #{like}, #{user.id})
+    </insert>
 
+    <!--根据id删除一条笔记-->
+    <delete id="deleteNote">
+        delete from note where id = #{id}
+    </delete>
+
+    <!--更新笔记-->
+    <update id="updateNoteContent">
+        update note set content = #{content}, time = #{time} where id = #{id}
+    </update>
+
+    <!--更新笔记获赞数-->
+    <update id="updateNoteLike">
+        update note set like = #{like} where id = #{id}
+    </update>
+
+    <!--根据id查询笔记-->
+    <select id="selectNoteById">
+        select * from note where id = #{id}
+    </select>
+
+    <!--获取某一个选择题试题下的所有笔记-->
+    <select id="listNoteUnderChoice" resultType="Note">
+        select * from note where typeId = 0 and questionId = #{id}
+    </select>
+
+    <!--获取某一个判断题下的所有笔记-->
+    <select id="listNoteUnderJudgement" resultType="Note">
+        select * from note where typeId = 1 and questionId = #{id}
+    </select>
+
+    <!--获取某一个简答题下的所有笔记-->
+    <select id="listNoteUnderShorter" resultType="Note">
+        select * from note where typeId = 0 and questionId = #{id}
+    </select>
+
+    <!--列举某个用户所写的笔记-->
+    <select id="listNoteUnderUser" resultType="Note">
+        select * from note where userId = #{id}
+    </select>
+
+    <!--新增一条点赞记录-->
+    <insert id="insertApplaud">
+        insert into applaud(noteId, userId, cancel) values (#{note.id}, #{user.id}, #{cancel})
+    </insert>
+
+    <!--更新点赞记录-->
+    <update id="updateApplaud">
+        update like set cancel = #{cancel} where id = #{id}
+    </update>
+
+    <!--查询点赞记录-->
+    <select id="selectApplaudById">
+        select * from applaud where id = #{id}
+    </select>
 </mapper>

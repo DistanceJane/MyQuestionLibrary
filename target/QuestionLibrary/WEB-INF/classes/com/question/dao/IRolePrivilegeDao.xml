@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.question.dao.IRolePrivilegeDao">
+
+    <!--添加一种角色-->
+    <insert id="insertRole">
+        insert into role(roleName) values(#{roleName})
+    </insert>
+
+    <!--删除一种角色-->
+    <delete id="deleteRole">
+        delete from role where id = #{id}
+    </delete>
+
+    <!--更新角色名称-->
+    <update id="updateRole">
+        update role set roleName = #{roleName} where id = #{id}
+    </update>
+
+    <!--根据id查询角色-->
+    <select id="selectRoleById">
+        select * from role where id = #{id}
+    </select>
+
+    <!--获取所有角色-->
+    <select id="listRole" resultType="Role">
+        select * from role
+    </select>
+
+    <!--获取某一角色下的所有用户-->
+    <select id="listUserUnderRole" resultType="User">
+        select * from user where roleId = #{id}
+    </select>
+
+
+    <!--为角色授予一种权限-->
+    <insert id="insertRolePrivilege">
+        insert into rolePrivilege(roleId, privilegeId) values(#{roleId}, #{privilegeId})
+    </insert>
+
+    <!--根据id为某个角色删除一种权限-->
+    <delete id="deleteRolePrivilege">
+        delete from rolePrivilege where id = #{id}
+    </delete>
+
+    <!--根据id查询某一条角色的权限记录-->
+    <select id="selectRolePrivilegeById">
+        select * from rolePrivilege where id = #{id}
+    </select>
+
+    <!--获取某个角色下的所有权限-->
+    <select id="listPrivilegeUnderRole" resultMap="RoleMapperPrivilege">
+        select privilege.id, privilegeName
+        from  rolePrivilege, privilege
+        where rolePrivilege.privilegeId = privilege.id and rolePrivilege.roleId = #{id}
+    </select>
+    
+    <resultMap id="RoleMapperPrivilege" type="privilege">
+        <id column="id" property="id"/>
+        <result column="privilegeName" property="privilegeName"/>
+    </resultMap>
+</mapper>

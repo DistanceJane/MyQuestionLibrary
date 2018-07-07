@@ -53,4 +53,9 @@
     <servlet-name>springmvc</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+
+  <!--设置欢迎页面-->
+  <welcome-file-list>
+    <welcome-file>/WEB-INF/pages/welcome.jsp</welcome-file>
+  </welcome-file-list>
 </web-app>

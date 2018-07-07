@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.question.dao.IUserDao">
+    <!--新增加一个用户-->
+    <insert id="insertUser">
+            insert into user(username, password, email, roleId) values(#{username}, #{password}, #{email}, #{role.id})
+    </insert>
+
+    <!--删除一个用户-->
+    <delete id="deleteUser">
+        delete from user where id = #{id}
+    </delete>
+
+    <!--修改用户基本信息-->
+    <update id="updateUserMessage">
+        update user set gender = #{gender}, school = #{school}, department = #{department}, major = #{major} where id = #{id}
+    </update>
+
+    <!--修改用户头像-->
+    <update id="updateUserPhoto">
+        update user set photo = #{photo} where id = #{id}
+    </update>
+
+    <!--修改用户密码-->
+    <update id="updateUserPassword">
+        update user set password = #{password} where id = #{id}
+    </update>
+
+    <!--修改用户手机号码-->
+    <update id="updateUserMobile">
+        update user set mobile = #{mobile} where id = #{id}
+    </update>
+
+    <!--更换用户邮箱账号-->
+    <update id="updateUserEmail">
+        update user set email = #{email} where id = #{id}
+    </update>
+
+    <!--修改用户的角色-->
+    <update id = "updateUserRole">
+        update user set roleId = #{roleId} where id = #{id}
+    </update>
+
+    <!--根据Id查询用户信息-->
+    <select id="selectUserById">
+        select * from user where id = #{id}
+    </select>
+</mapper>
