@@ -5,7 +5,7 @@
 <mapper namespace="com.question.dao.IUserDao">
     <!--新增加一个用户-->
     <insert id="insertUser">
-            insert into user(username, password, email, roleId) values(#{username}, #{password}, #{email}, #{role.id})
+            insert into user(username, password, email) values(#{username}, #{password}, #{email})
     </insert>
 
     <!--删除一个用户-->
@@ -46,5 +46,15 @@
     <!--根据Id查询用户信息-->
     <select id="selectUserById">
         select * from user where id = #{id}
+    </select>
+
+    <!--根据用户名和密码查找用户信息-->
+    <select id="selectUserByUsernameAndPassword" resultType="User">
+        select * from user where username = #{username} and password = #{password}
+    </select>
+
+    <!--根据用户名查找用户信息-->
+    <select id="selectUserByUsername" resultType="User">
+        select * from user where username = #{username}
     </select>
 </mapper>

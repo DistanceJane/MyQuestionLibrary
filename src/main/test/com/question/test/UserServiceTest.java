@@ -27,6 +27,6 @@ public class UserServiceTest {
         user.setUsername("aaaaa");
         user.setPassword("111");
         user.setEmail("111@qq.com");
-        userService.addUser(user);
+        userService.register(user);
     }
 }

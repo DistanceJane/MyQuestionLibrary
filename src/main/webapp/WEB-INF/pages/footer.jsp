@@ -6,20 +6,20 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="layui-bg-black custom-width-max">
-    <div class="layui-row">
-        <div class="layui-col-md8">
-            <div class="layui-row">
-                <div class="layui-col-md6 layui-col-md-offset2">
-                    <h3>基于SSM的在线试题库系统的设计与实现</h3>
-                    <p>作者QQ 543903836</p>
-                    <p>作者微信 BABA-LILEI</p>
-                </div>
-                <div class="layui-col-md-4">二维码图片</div>
-            </div>
-        </div>
-        <div class="layui-col-md-4">
-            加入我们
-        </div>
-    </div>
+
+<div class="custom-bg-footer custom-width-max custom-padding">
+    <span class="custom-footer-title">
+        基于SSM的试题库的设计与实现
+    </span>
+    <span class="layui-breadcrumb custom-margin-right" lay-separator="|">
+        <a href="">关于我们</a>
+        <a href="">加入我们</a>
+        <a href="">意见反馈</a>
+        <a href="">企业服务</a>
+        <a href="">联系我们</a>
+        <a href="">免责声明</a>
+        <a href="">友情链接</a>
+    </span>
 </div>
+
+

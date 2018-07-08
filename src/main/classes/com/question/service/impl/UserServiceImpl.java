@@ -15,8 +15,28 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     @Transactional
-    public void addUser(User user){
+    public void register(User user){
         userDao.insertUser(user);
     }
 
+    @Override
+    @Transactional
+    public User login(String username, String password) {
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        return userDao.selectUserByUsernameAndPassword(user);
+    }
+
+    @Override
+    @Transactional
+    public boolean verifyUsername(String username) {
+        User user = new User();
+        user.setUsername(username);
+         if(userDao.selectUserByUsername(user) == null){
+             return false;
+         }else{
+             return true;
+         }
+    }
 }

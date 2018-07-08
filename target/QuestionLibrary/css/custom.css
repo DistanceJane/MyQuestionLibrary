@@ -1,7 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 .custom-body {
-    padding-top: 70px;
-    padding-bottom: 50px;
+    padding-top: 100px;
     background: #eeeeee;
 }
 
@@ -9,6 +8,7 @@
     position: fixed;
     margin-top: 0px;
     width: 100%;
+    z-index:1;
 }
 
 .form-pane {
@@ -60,7 +60,6 @@ body{
 .custom-container{
     margin-left: 8%;
     margin-right: 8%;
-    margin-top: 70px;
 }
 
 .custom-my-info{
@@ -117,7 +116,6 @@ body{
     display: block;
     width: 100%;
     line-height: 40px;
-    height: 100%;
     color: #0C0C0C;
 }
 
@@ -252,7 +250,7 @@ body{
 }
 
 .custom-list{
-    padding: 10px 10px;
+     padding: 10px 10px;
 }
 
 .custom-list-item{
@@ -511,11 +509,11 @@ body{
 }
 
 .custom-text-red{
-    color: #f77a57;
+    color: #f77a57 !important;
 }
 
 .custom-text-green{
-    color:#00BC9B;
+    color:#00BC9B !important;
 }
 
 .custom-note-hot{
@@ -578,6 +576,33 @@ body{
 
 .custom-forget-password{
     text-align: center;
+}
+
+.custom-padding-right-200{
+    padding-right: 200px !important;
+}
+
+.custom-left-menu-img{
+    width: 18px;
+    height: 18px;
+    margin: 0 10px;
+}
+
+.custom-help-text{
+    margin: 10px 0 10px 10px;
+}
+
+.custom-bg-footer{
+    background-color: #e0e8f9;
+}
+
+.custom-footer-title{
+    font-size: 18px;
+    margin: 0 20px;
+}
+
+.custom-margin-right{
+    margin-left: 500px;
 }
 
 

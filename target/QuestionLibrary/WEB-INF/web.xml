@@ -1,8 +1,8 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
-<web-app>
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>Archetype Created Web Application</display-name>
   <!--指定spring配置文件的位置及名称-->
   <context-param>
@@ -10,6 +10,14 @@
     <param-value>classpath:com/question/resources/spring-*.xml</param-value>
   </context-param>
 
+  <filter>
+    <filter-name>cors</filter-name>
+    <filter-class>com.question.filter.CorsFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>cors</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
   <!--注册字符编码过滤器：统一全站字符编码为UTF-8-->
   <filter>
     <filter-name>characterEncodingFilter</filter-name>

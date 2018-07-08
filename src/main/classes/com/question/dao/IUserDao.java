@@ -59,4 +59,18 @@ public interface IUserDao {
      */
     User selectUserById(int id);
 
+    /**
+     * 根据用户名和密码查找用户信息
+     * @param user
+     * @return
+     */
+    User selectUserByUsernameAndPassword(User user);
+
+    /**
+     * 根据用户名查找用户信息
+     * @param user
+     * @return
+     */
+    User selectUserByUsername(User user);
+
 }

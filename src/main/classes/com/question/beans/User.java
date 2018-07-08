@@ -29,44 +29,88 @@ public class User {
     public User() {
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhoto() {
+        return photo;
     }
 
     public void setPhoto(String photo) {
         this.photo = photo;
     }
 
+    public Integer getGender() {
+        return gender;
+    }
+
     public void setGender(Integer gender) {
         this.gender = gender;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
+    public String getMobile() {
+        return mobile;
+    }
+
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public String getSchool() {
+        return school;
     }
 
     public void setSchool(String school) {
         this.school = school;
     }
 
+    public String getDepartment() {
+        return department;
+    }
+
     public void setDepartment(String department) {
         this.department = department;
     }
 
+    public String getMajor() {
+        return major;
+    }
+
     public void setMajor(String major) {
         this.major = major;
+    }
+
+    public Role getRole() {
+        return role;
     }
 
     public void setRole(Role role) {

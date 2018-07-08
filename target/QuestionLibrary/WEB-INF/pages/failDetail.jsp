@@ -20,6 +20,9 @@
     <title>试卷练习</title>
 </head>
 <body>
+
+<%@include file="nav.jsp"%>
+<div class="custom-body">
 <div class="custom-container">
     <div class="layui-row">
         <div class="layui-col-md9">
@@ -63,7 +66,7 @@
                         <div class="custom-speaker-panel">
                             <div class="layui-row">
                                 <div class="custom-speaker">
-                                    <img class="custom-speaker-img" src="../images/you.jpg">
+                                    <img class="custom-speaker-img" src="../../images/you.jpg">
                                     <h6 class="custom-text-center">小居居</h6>
                                 </div>
                                 <div class="custom-speaker-text">
@@ -164,6 +167,8 @@
     </div>
 </div>
 </div>
+
+<%@include file="footer.jsp"%>
 </body>
 <script>
     //注意进度条依赖 element 模块，否则无法进行正常渲染和功能性操作
@@ -191,5 +196,4 @@
         });
     });
 </script>
-</body>
 </html>
