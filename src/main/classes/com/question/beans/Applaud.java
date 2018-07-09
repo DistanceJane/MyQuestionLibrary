@@ -4,8 +4,12 @@ public class Applaud {
     private Integer id;
     // 所对应的笔记
     private Note note;
+    // 所对应的笔记id
+    private Integer noteId;
     // 点赞的用户
     private User user;
+    // 点赞的用户id
+    private Integer userId;
     // 点赞是否取消
     private Integer cancel;
 
@@ -44,12 +48,28 @@ public class Applaud {
         this.cancel = cancel;
     }
 
+    public Integer getNoteId() {
+        return noteId;
+    }
+
+    public void setNoteId(Integer noteId) {
+        this.noteId = noteId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "Applaud{" +
                 "id=" + id +
-                ", note=" + note +
-                ", user=" + user +
+                ", noteId=" + noteId +
+                ", userId=" + userId +
                 ", cancel=" + cancel +
                 '}';
     }

@@ -6,11 +6,13 @@ package com.question.beans;
 public class Fail {
     private Integer id;
     // 试题类型
-    private Type type;
+    private Integer typeId;
     // 试题id
-    private String questionId;
+    private Integer questionId;
     // 用户
     private User user;
+    // 用户id
+    private Integer userId;
 
     public Fail() {
     }
@@ -23,19 +25,19 @@ public class Fail {
         this.id = id;
     }
 
-    public Type getType() {
-        return type;
+    public Integer getTypeId() {
+        return typeId;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
     }
 
-    public String getQuestionId() {
+    public Integer getQuestionId() {
         return questionId;
     }
 
-    public void setQuestionId(String questionId) {
+    public void setQuestionId(Integer questionId) {
         this.questionId = questionId;
     }
 
@@ -47,11 +49,19 @@ public class Fail {
         this.user = user;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "Fail{" +
                 "id=" + id +
-                ", type=" + type +
+                ", typeId=" + typeId +
                 ", questionId='" + questionId + '\'' +
                 ", user=" + user +
                 '}';

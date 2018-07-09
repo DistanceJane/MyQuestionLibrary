@@ -29,4 +29,8 @@ public class UserServiceTest {
         user.setEmail("111@qq.com");
         userService.register(user);
     }
+
+    @Test
+    public void testUpdate() {
+    }
 }

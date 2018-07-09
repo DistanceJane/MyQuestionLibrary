@@ -283,7 +283,6 @@ body{
 }
 
 .custom-check-text{
-    padding: 0 5px;
     font-size: 16px;
 }
 
@@ -310,13 +309,19 @@ body{
 }
 
 .custom-text-ellipsis{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    display:inline-block;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    word-break: break-all;width:100%;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width: 100px!important;
+    float: right;
+}
+
+.custom-text-ellipsis-sm{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width: 80px!important;
+    float: right;
 }
 
 .custom-check-text-sm{
@@ -431,7 +436,7 @@ body{
 .custom-note-like{
     width: 16px;
     height: 16px;
-    margin-left: 500px;
+    margin-left: 600px;
 }
 
 .custom-speaker-panel{
@@ -604,6 +609,7 @@ body{
 .custom-margin-right{
     margin-left: 500px;
 }
+
 
 
 

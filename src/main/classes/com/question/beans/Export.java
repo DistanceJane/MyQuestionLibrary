@@ -8,10 +8,14 @@ public class Export {
     private Integer id;
     // 所打印的试卷
     private Paper paper;
+    // 所打印的试卷id
+    private Integer paperId;
     // 导出时间
     private Date exportTime;
     // 用户
     private User user;
+    // 用户id
+    private Integer userId;
 
     public Export() {
     }
@@ -32,6 +36,14 @@ public class Export {
         this.paper = paper;
     }
 
+    public Integer getPaperId() {
+        return paperId;
+    }
+
+    public void setPaperId(Integer paperId) {
+        this.paperId = paperId;
+    }
+
     public Date getExportTime() {
         return exportTime;
     }
@@ -48,13 +60,21 @@ public class Export {
         this.user = user;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "Export{" +
                 "id=" + id +
-                ", paper=" + paper +
+                ", paperId=" + paperId +
                 ", exportTime=" + exportTime +
-                ", user=" + user +
+                ", userId=" + userId +
                 '}';
     }
 }

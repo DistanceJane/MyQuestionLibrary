@@ -7,4 +7,15 @@
     <insert id="insertLibrary">
         insert into library(subjectId, userId) values (#{subject.id}, #{user.id})
     </insert>
+
+    <select id="selectLibraryById" resultType="Library">
+        select * from library where id = #{id}
+    </select>
+
+    <!--获取用户的试题库列表-->
+    <select id="listLibraryUnderUser" resultType="Library">
+        select * from library where userId = #{id}
+    </select>
+
+
 </mapper>

@@ -13,8 +13,9 @@
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/home.do">首页</a></li>
-            <li class="layui-nav-item"><a href="">题库</a></li>
+            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/practice.do">题库</a></li>
             <li class="layui-nav-item"><a href="">笔记</a></li>
+            <li class="layui-nav-item"><a href="">上传试题</a></li>
             <li class="layui-nav-item">
                 <a href="javascript:;">后台管理</a>
                 <dl class="layui-nav-child">
@@ -38,9 +39,8 @@
                             ${sessionScope.user.username}
                         </a>
                         <dl class="layui-nav-child">
-                            <dd><a href="/user/mine.do">个人主页</a></dd>
-                            <dd><a href="">账号设置</a></dd>
-                            <dd><a href="">我的成就</a></dd>
+                            <dd><a href="/personal/mine.do">个人主页</a></dd>
+                            <dd><a href="/personal/mine.do">我的成就</a></dd>
                             <dd><a href="/user/logout.do">退出登录</a></dd>
                         </dl>
                     </li>
@@ -61,7 +61,7 @@
     //注意：折叠面板 依赖 element 模块，否则无法进行功能性操作
     layui.use(['element','layer','form'], function () {
         var element = layui.element;
-        var layer = layer.layer;
+        var layer = layui.layer;
         var form = layui.form;
     });
 </script>

@@ -11,10 +11,14 @@ public class Judgement {
     private Integer answer;
     // 难度系数
     private Integer level;
+    // 录入员id
+    private Integer userId;
     // 录入员
     private User user;
     // 所属章节
     private Chapter chapter;
+    // 所属章节id
+    private Integer chapterId;
 
     public Judgement() {
     }
@@ -51,6 +55,14 @@ public class Judgement {
         this.level = level;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     public User getUser() {
         return user;
     }
@@ -67,6 +79,14 @@ public class Judgement {
         this.chapter = chapter;
     }
 
+    public Integer getChapterId() {
+        return chapterId;
+    }
+
+    public void setChapterId(Integer chapterId) {
+        this.chapterId = chapterId;
+    }
+
     @Override
     public String toString() {
         return "Judgement{" +
@@ -74,8 +94,8 @@ public class Judgement {
                 ", title='" + title + '\'' +
                 ", answer=" + answer +
                 ", level=" + level +
-                ", user=" + user +
-                ", chapter=" + chapter +
+                ", userId=" + userId +
+                ", chapterId=" + chapterId +
                 '}';
     }
 }

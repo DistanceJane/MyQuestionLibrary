@@ -2,7 +2,21 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.question.dao.IPaperQuestionDao">
+<mapper namespace="com.question.dao.IPaperDao">
+
+
+    <insert id="insertPaper">
+        insert into paper(libraryId, createTime, userId) values (#{libraryId}, #{createTime}, #{userId})
+    </insert>
+
+    <!--获取用户的所有试卷-->
+    <select id="listPaperUnderUser" resultType="Paper">
+        select * from paper where userId = #{id}
+    </select>
+
+
+
+
     <!--新增一道试卷上的选择题-->
     <insert id="insertChoiceQuestion">
         insert into choiceQuestion(paperId, choiceId, myAnswer, score, mutiple)

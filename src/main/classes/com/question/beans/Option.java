@@ -11,6 +11,9 @@ public class Option {
     private String context;
     // 是否是正确选项
     private Integer correct;
+
+    // 所对应的选择题
+    private Integer choiceId;
     // 所对应的选择题
     private Choice choice;
 
@@ -49,6 +52,14 @@ public class Option {
         this.correct = correct;
     }
 
+    public Integer getChoiceId() {
+        return choiceId;
+    }
+
+    public void setChoiceId(Integer choiceId) {
+        this.choiceId = choiceId;
+    }
+
     public Choice getChoice() {
         return choice;
     }
@@ -64,7 +75,7 @@ public class Option {
                 ", header='" + header + '\'' +
                 ", context='" + context + '\'' +
                 ", correct=" + correct +
-                ", choice=" + choice +
+                ", choiceId=" + choiceId +
                 '}';
     }
 }

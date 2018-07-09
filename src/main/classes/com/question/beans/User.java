@@ -23,8 +23,11 @@ public class User {
     private String department;
     // 专业
     private String major;
+    // 角色Id
+    private Integer roleId;
     // 所属角色
     private Role role;
+
 
     public User() {
     }
@@ -117,6 +120,14 @@ public class User {
         this.role = role;
     }
 
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -130,7 +141,7 @@ public class User {
                 ", school='" + school + '\'' +
                 ", department='" + department + '\'' +
                 ", major='" + major + '\'' +
-                ", role=" + role +
+                ", roleId=" + roleId +
                 '}';
     }
 }

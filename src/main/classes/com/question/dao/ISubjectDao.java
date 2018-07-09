@@ -31,6 +31,7 @@ public interface ISubjectDao {
      */
     Subject selectSubjectById(int id);
 
+
     /**
      * 获取所有的学科信息
      * @return

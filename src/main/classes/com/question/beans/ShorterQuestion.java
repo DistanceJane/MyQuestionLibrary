@@ -5,10 +5,14 @@ package com.question.beans;
  */
 public class ShorterQuestion {
     private Integer id;
+    // 所对应的题库中的简答题id
+    private Integer shortId;
     // 所对应的题库中的简答题
     private Shorter shorter;
     // 记录用户的答案
     private String myAnswer;
+    // 所对应的试卷id
+    private Integer paperId;
     // 所对应的试卷
     private Paper paper;
     // 分数
@@ -23,6 +27,14 @@ public class ShorterQuestion {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getShortId() {
+        return shortId;
+    }
+
+    public void setShortId(Integer shortId) {
+        this.shortId = shortId;
     }
 
     public Shorter getShorter() {
@@ -41,6 +53,14 @@ public class ShorterQuestion {
         this.myAnswer = myAnswer;
     }
 
+    public Integer getPaperId() {
+        return paperId;
+    }
+
+    public void setPaperId(Integer paperId) {
+        this.paperId = paperId;
+    }
+
     public Paper getPaper() {
         return paper;
     }
@@ -57,13 +77,14 @@ public class ShorterQuestion {
         this.score = score;
     }
 
+
     @Override
     public String toString() {
         return "ShorterQuestion{" +
                 "id=" + id +
-                ", shorter=" + shorter +
+                ", shortId=" + shortId +
                 ", myAnswer='" + myAnswer + '\'' +
-                ", paper=" + paper +
+                ", paperId=" + paperId +
                 ", score=" + score +
                 '}';
     }

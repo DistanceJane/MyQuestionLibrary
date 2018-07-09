@@ -10,8 +10,12 @@ public class Shorter {
     private String Answer;
     // 难度系数
     private Integer level;
+    // 录入员id
+    private Integer userId;
     // 录入员
     private User user;
+    // 所属章节id
+    private Integer chapterId;
     // 所属章节
     private Chapter chapter;
 
@@ -50,12 +54,28 @@ public class Shorter {
         this.level = level;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Integer getChapterId() {
+        return chapterId;
+    }
+
+    public void setChapterId(Integer chapterId) {
+        this.chapterId = chapterId;
     }
 
     public Chapter getChapter() {
@@ -73,8 +93,8 @@ public class Shorter {
                 ", title='" + title + '\'' +
                 ", Answer='" + Answer + '\'' +
                 ", level=" + level +
-                ", user=" + user +
-                ", chapter=" + chapter +
+                ", userId=" + userId +
+                ", chapterId=" + chapterId +
                 '}';
     }
 }

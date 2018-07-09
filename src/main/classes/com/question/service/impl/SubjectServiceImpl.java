@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
 
 @Service("subjectService")
 public class SubjectServiceImpl implements ISubjectService {
@@ -21,5 +22,15 @@ public class SubjectServiceImpl implements ISubjectService {
     public List<Chapter> listChapterUnderSubject(Subject subject) {
         List<Chapter> chapters = subjectDao.listChapterUnderSubject(subject);
         return chapters;
+    }
+
+    @Override
+    public List<Subject> listAllSubject() {
+        List<Subject> subjects = subjectDao.listSubject();
+        for(Subject subject : subjects){
+            List<Chapter> chapters = subjectDao.listChapterUnderSubject(subject);
+            subject.setChapters(chapters);
+        }
+        return subjects;
     }
 }

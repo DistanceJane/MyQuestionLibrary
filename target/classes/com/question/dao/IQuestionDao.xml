@@ -19,7 +19,7 @@
     </update>
 
     <!--根据id查询某一个选择题-->
-    <select id="selectChoiceById">
+    <select id="selectChoiceById" resultType="Choice">
         select * from choice where  id = #{id}
     </select>
 
@@ -74,7 +74,7 @@
     </update>
 
     <!--根据id查询某道判断题-->
-    <select id="selectJudgementById">
+    <select id="selectJudgementById" resultType="Judgement">
         select * from judgement where id = #{id}
     </select>
 
@@ -104,17 +104,17 @@
     </update>
 
     <!--根据id查询某个简答题-->
-    <select id="selectShorterById">
+    <select id="selectShorterById" resultType="Shorter">
         select * from shorter where id = #{id}
     </select>
 
     <!--获取某个章节下的所有简答题-->
-    <select id="listShorterUnderChapter">
+    <select id="listShorterUnderChapter" resultType="Shorter">
         select * from shorter where chapterId = #{id}
     </select>
 
     <!--根据题目模糊搜索简答题-->
-    <select id="listShorterByTitle">
+    <select id="listShorterByTitle" resultType="Shorter">
         select * from shorter where title like '%' #{title} '%'
     </select>
 

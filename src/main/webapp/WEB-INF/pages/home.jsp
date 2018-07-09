@@ -13,12 +13,12 @@
     <link href="../../layui/layui.css" rel="stylesheet">
     <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/custom.css" rel="stylesheet">
+    <script src="../../jquery/jquery.min.js"></script>
     <script src="../../layui/layui.js"></script>
     <title>首页</title>
 </head>
 <body>
 <%@include file="nav.jsp" %>
-
 <div class="custom-body">
     <div class="custom-container">
         <div class="layui-row">
@@ -82,15 +82,15 @@
                 <div class="layui-row">
                     <div class="custom-panel">
                         <div class="layui-card">
-                            <div class="layui-card-header">我的试题</div>
+                            <div class="layui-card-header">我的题库</div>
                             <div class="layui-card-body">
                                 <div class="layui-row">
                                     <div class="layui-col-md4"><span class="custom-text-sm">总共做题:</span><span
-                                            class="custom-text-recorder-done">1208题</span></div>
+                                            class="custom-text-recorder-done">${countLibrary.doneQuantity}题</span></div>
                                     <div class="layui-col-md4"><span class="custom-text-sm">通过题目:</span><span
-                                            class="custom-text-recorder-pass">897题</span></div>
+                                            class="custom-text-recorder-pass">${countLibrary.passQuantity}题</span></div>
                                     <div class="layui-col-md4"><span class="custom-text-sm">题目总数</span><span
-                                            class="custom-text-recorder-sum">4698题</span></div>
+                                            class="custom-text-recorder-sum">${countLibrary.questionQuantity}题</span></div>
                                 </div>
 
                                 <div class="custom-bg-gray custom-subject-item">
@@ -100,27 +100,22 @@
                                         <div class="col-md-4">进度</div>
                                     </div>
                                 </div>
-                                <div class=" custom-subject-item">
-                                    <div class="layui-row">
-                                        <div class="col-md-4">Java语言程序设计</div>
-                                        <div class="col-md-4">890/890</div>
-                                        <div class="col-md-4"><span class="custom-text-green">100%</span></div>
+                                <c:forEach items="${libraries}" var="library">
+                                    <div class=" custom-subject-item">
+                                        <div class="layui-row">
+                                            <div class="col-md-4">${library.subject.subjectName}</div>
+                                            <div class="col-md-4">${library.passQuantity}/${library.questionQuantity}</div>
+                                            <c:choose>
+                                                <c:when test="${library.progress == 0}">
+                                                    <div class="col-md-4"><span class="custom-text-red">${library.progress}%</span></div>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <div class="col-md-4"><span class="custom-text-green">${library.progress}%</span></div>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="custom-subject-item">
-                                    <div class="layui-row">
-                                        <div class="col-md-4">计算机网络</div>
-                                        <div class="col-md-4">460/1120</div>
-                                        <div class="col-md-4"><span class="custom-text-red">40%</span></div>
-                                    </div>
-                                </div>
-                                <div class="custom-subject-item">
-                                    <div class="layui-row">
-                                        <div class="col-md-4">设计模式</div>
-                                        <div class="col-md-4">124/328</div>
-                                        <div class="col-md-4"><span class="custom-text-red">38%</span></div>
-                                    </div>
-                                </div>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
@@ -132,9 +127,9 @@
                             <div class="layui-card-body">
                                 <div class="layui-row">
                                     <div class="layui-col-md4"><span class="custom-text-sm">创建试卷:</span><span
-                                            class="custom-text-recorder-done">48套</span></div>
+                                            class="custom-text-recorder-done">${paperCount}套</span></div>
                                     <div class="layui-col-md4"><span class="custom-text-sm">完成试卷:</span><span
-                                            class="custom-text-recorder-pass">40套</span></div>
+                                            class="custom-text-recorder-pass">${finishPaperCount}套</span></div>
                                 </div>
 
                                 <div class="custom-bg-gray custom-subject-item">
@@ -142,33 +137,35 @@
                                         <div class="col-md-3">学科</div>
                                         <div class="col-md-3">状态</div>
                                         <div class="col-md-3">创建时间</div>
-                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3">得分</div>
                                     </div>
                                 </div>
-                                <div class=" custom-subject-item">
-                                    <div class="layui-row">
-                                        <div class="col-md-3">Java语言程序设计</div>
-                                        <div class="col-md-3"><span class="custom-text-green">完成</span></div>
-                                        <div class="col-md-3">2018-06-31 18:56</div>
-                                        <div class="col-md-3"><a style="text-decoration: none">再做一次</a></div>
+
+
+                                <c:forEach items="${papers}" var="paper">
+                                    <div class=" custom-subject-item">
+                                        <div class="layui-row">
+                                            <div class="col-md-3">${paper.library.subject.subjectName}</div>
+                                            <c:choose>
+                                                <c:when test="${paper.state == 1}">
+                                                    <div class="col-md-3"><span class="custom-text-green">完成</span></div>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <div class="col-md-3"><span class="custom-text-red">未完成</span></div>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <div class="col-md-3">${paper.createTime}</div>
+                                            <c:choose>
+                                                <c:when test="${paper.state == 1}">
+                                                    <div class="col-md-3">${paper.score}</div>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <div class="col-md-3"><a style="text-decoration: none">继续完成</a></div>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="custom-subject-item">
-                                    <div class="layui-row">
-                                        <div class="col-md-3">计算机网络</div>
-                                        <div class="col-md-3"><span class="custom-text-red">未完成</span></div>
-                                        <div class="col-md-3">2018-06-28 09:10</div>
-                                        <div class="col-md-3"><a style="text-decoration: none">继续完成</a></div>
-                                    </div>
-                                </div>
-                                <div class="custom-subject-item">
-                                    <div class="layui-row">
-                                        <div class="col-md-3">设计模式</div>
-                                        <div class="col-md-3"><span class="custom-text-green">完成</span></div>
-                                        <div class="col-md-3">2018-06-28 14:00</div>
-                                        <div class="col-md-3"><a style="text-decoration: none">再做一次</a></div>
-                                    </div>
-                                </div>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
@@ -178,63 +175,24 @@
                         <div class="layui-card">
                             <div class="layui-card-header">热门笔记</div>
                             <div class="layui-card-body">
-                                <div class="custom-note-panel">
-                                    <div class="layui-row">
-                                        <div class="custom-note-hot">
-                                            <span class="custom-note-title">《Spring》</span>
-                                            <img src="../../images/like.png" class="custom-note-like">
-                                            <span>(30)</span>
-                                            <p>
-                                                Bean的创建时会提到Spring的单例模式，就是说默认情况下Spring中定义的Bean是以单例模式创建的。如果以前了解设计模式中的单例模式的话很容易对这种说法产生先入为主的印象。事实上，Spring中的单例模式还有许多需要注意的地方。
-                                                在GoF中的单例模式是指一个ClassLoader中只存在类一个实例。
-                                                而在Spring中的单例实际上更确切的说应该是：
-                                                1.每个Spring Container中定义的Bean只存在一个实例
-                                                2.每个Bean定义只存在一个实例。
-                                            </p>
-                                            <span class="custom-note-hot-datetime"><strong>发布于2018-06-30 17:25</strong></span>
-                                            <span class="custom-note-detail"><a
-                                                    style="text-decoration: none">查看详情</a></span>
+
+                                <c:forEach items="${notes}" var="note">
+                                    <div class="custom-note-panel">
+                                        <div class="layui-row">
+                                            <div class="custom-note-hot">
+                                                <span class="custom-note-title">${note.chapter.chapterName}</span>
+                                                <img src="../../images/like.png" class="custom-note-like">
+                                                <span>(${note.like})</span>
+                                                <p>
+                                                    ${note.content}
+                                                </p>
+                                                <span class="custom-note-hot-datetime"><strong>${note.time}</strong></span>
+                                                <span class="custom-note-detail"><a href="${pageContext.request.contextPath}/question/detail.do"
+                                                        style="text-decoration: none">查看详情</a></span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="custom-note-panel">
-                                    <div class="layui-row">
-                                        <div class="custom-note-hot">
-                                            <span class="custom-note-title">《Spring》</span>
-                                            <img src="../../images/like.png" class="custom-note-like">
-                                            <span>(30)</span>
-                                            <p>
-                                                Bean的创建时会提到Spring的单例模式，就是说默认情况下Spring中定义的Bean是以单例模式创建的。如果以前了解设计模式中的单例模式的话很容易对这种说法产生先入为主的印象。事实上，Spring中的单例模式还有许多需要注意的地方。
-                                                在GoF中的单例模式是指一个ClassLoader中只存在类一个实例。
-                                                而在Spring中的单例实际上更确切的说应该是：
-                                                1.每个Spring Container中定义的Bean只存在一个实例
-                                                2.每个Bean定义只存在一个实例。
-                                            </p>
-                                            <span class="custom-note-hot-datetime"><strong>发布于2018-06-30 17:25</strong></span>
-                                            <span class="custom-note-detail"><a
-                                                    style="text-decoration: none">查看详情</a></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="custom-note-panel">
-                                    <div class="layui-row">
-                                        <div class="custom-note-hot">
-                                            <span class="custom-note-title">《Spring》</span>
-                                            <img src="../../images/like.png" class="custom-note-like">
-                                            <span>(30)</span>
-                                            <p>
-                                                Bean的创建时会提到Spring的单例模式，就是说默认情况下Spring中定义的Bean是以单例模式创建的。如果以前了解设计模式中的单例模式的话很容易对这种说法产生先入为主的印象。事实上，Spring中的单例模式还有许多需要注意的地方。
-                                                在GoF中的单例模式是指一个ClassLoader中只存在类一个实例。
-                                                而在Spring中的单例实际上更确切的说应该是：
-                                                1.每个Spring Container中定义的Bean只存在一个实例
-                                                2.每个Bean定义只存在一个实例。
-                                            </p>
-                                            <span class="custom-note-hot-datetime"><strong>发布于2018-06-30 17:25</strong></span>
-                                            <span class="custom-note-detail"><a
-                                                    style="text-decoration: none">查看详情</a></span>
-                                        </div>
-                                    </div>
-                                </div>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>

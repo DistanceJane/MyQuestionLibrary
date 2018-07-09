@@ -45,46 +45,6 @@ public interface ILibraryDao {
     List<Library> listLibraryUnderUser(User user);
 
     /**
-     * 新增加一份试卷记录
-     * @param paper
-     */
-    void insertPaper(Paper paper);
-
-    /**
-     * 根据id删除试卷记录
-     * @param id
-     */
-    void deletePaper(int id);
-
-    /**
-     * 更新试卷记录
-     * @param paper
-     */
-    void updatePaper(Paper paper);
-
-    /**
-     * 根据id查询试卷记录
-     * @param id
-     * @return
-     */
-    Paper selectPaperById(int id);
-
-    /**
-     * 获取某学科下的试卷记录
-     * @param subject
-     * @return
-     */
-    List<Paper> listPaperUnderSubject(Subject subject);
-
-    /**
-     * 获取用户的所有试卷
-     * @param user
-     * @return
-     */
-    List<Paper> listPaperUnderUser(User user);
-
-
-    /**
      * 新增加一份试卷导出日志
      * @param export
      */

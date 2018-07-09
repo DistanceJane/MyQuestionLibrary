@@ -9,12 +9,19 @@ public class Choice {
     private String title;
     // 图片
     private String picture;
+    // 是否多选
+    private Integer multiple;
     // 难度系数
     private Integer level;
     // 所属章节
     private Chapter chapter;
+    // 所属章节id
+    private Integer chapterId;
     // 录入来源
     private User user;
+    // 录入员id
+    private Integer userId;
+
 
     public Choice() {
     }
@@ -67,6 +74,30 @@ public class Choice {
         this.user = user;
     }
 
+    public Integer getMultiple() {
+        return multiple;
+    }
+
+    public void setMultiple(Integer multiple) {
+        this.multiple = multiple;
+    }
+
+    public Integer getChapterId() {
+        return chapterId;
+    }
+
+    public void setChapterId(Integer chapterId) {
+        this.chapterId = chapterId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "Choice{" +
@@ -74,8 +105,8 @@ public class Choice {
                 ", title='" + title + '\'' +
                 ", picture='" + picture + '\'' +
                 ", level=" + level +
-                ", chapter=" + chapter +
-                ", user=" + user +
+                ", chapterId=" + chapterId +
+                ", user=Id" + userId +
                 '}';
     }
 }

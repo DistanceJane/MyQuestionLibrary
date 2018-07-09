@@ -9,7 +9,6 @@
 
                 <div class="layui-card">
                     <div class="layui-card-header">基本信息
-
                     </div>
                     <div class="layui-card-body">
                         <form class="layui-form" action="">
@@ -75,7 +74,7 @@
                             </div>
                             <div class="layui-form-item">
                                 <div class="layui-input-block">
-                                    <button class="layui-btn pull-left" lay-submit lay-filter="formDemo">保存</button>
+                                    <button class="layui-btn pull-left" lay-submit lay-filter="form_info">保存</button>
                                 </div>
                             </div>
                         </form>
@@ -89,8 +88,9 @@
     //Demo
     layui.use('form', function () {
         var form = layui.form;
+        form.render();
         //监听提交
-        form.on('submit(formDemo)', function (data) {
+        form.on('submit(form_info)', function (data) {
             layer.msg(JSON.stringify(data.field));
             return false;
         });

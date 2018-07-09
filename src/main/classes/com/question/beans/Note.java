@@ -1,5 +1,7 @@
 package com.question.beans;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -8,7 +10,7 @@ import java.util.Date;
 public class Note {
     private Integer id;
     // 试题类型
-    private Type type;
+    private Integer typeId;
     // 题目id
     private Integer questionId;
     // 内容
@@ -16,9 +18,13 @@ public class Note {
     // 获赞数
     private Integer like;
     // 发布时间
-    private Date dataTime;
+    private Date time;
+    // 发布用户
+    private Integer userId;
     // 发布用户
     private User user;
+    // 所属的章节
+    private Chapter chapter;
 
     public Note() {
     }
@@ -31,12 +37,12 @@ public class Note {
         this.id = id;
     }
 
-    public Type getType() {
-        return type;
+    public Integer getTypeId() {
+        return typeId;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
     }
 
     public Integer getQuestionId() {
@@ -63,12 +69,13 @@ public class Note {
         this.like = like;
     }
 
-    public Date getDataTime() {
-        return dataTime;
+    public String getTime() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return dateFormat.format(time);
     }
 
-    public void setDataTime(Date dataTime) {
-        this.dataTime = dataTime;
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     public User getUser() {
@@ -79,15 +86,31 @@ public class Note {
         this.user = user;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Chapter getChapter() {
+        return chapter;
+    }
+
+    public void setChapter(Chapter chapter) {
+        this.chapter = chapter;
+    }
+
     @Override
     public String toString() {
         return "Note{" +
                 "id=" + id +
-                ", type=" + type +
+                ", typeId=" + typeId +
                 ", questionId=" + questionId +
                 ", content='" + content + '\'' +
                 ", like=" + like +
-                ", dataTime=" + dataTime +
+                ", time=" + time +
                 ", user=" + user +
                 '}';
     }

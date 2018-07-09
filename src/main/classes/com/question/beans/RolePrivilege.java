@@ -5,10 +5,10 @@ package com.question.beans;
  */
 public class RolePrivilege {
     private Integer id;
-    // 角色
-    private Role role;
-    // 权限
-    private Privilege privilege;
+    // 角色id
+    private Integer roleId;
+    // 权限id
+    private Integer privilegeId;
 
     public RolePrivilege() {
     }
@@ -21,28 +21,28 @@ public class RolePrivilege {
         this.id = id;
     }
 
-    public Role getRole() {
-        return role;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
-    public Privilege getPrivilege() {
-        return privilege;
+    public Integer getPrivilegeId() {
+        return privilegeId;
     }
 
-    public void setPrivilege(Privilege privilege) {
-        this.privilege = privilege;
+    public void setPrivilegeId(Integer privilegeId) {
+        this.privilegeId = privilegeId;
     }
 
     @Override
     public String toString() {
         return "RolePrivilege{" +
                 "id=" + id +
-                ", role=" + role +
-                ", privilege=" + privilege +
+                ", roleId=" + roleId +
+                ", privilegeId=" + privilegeId +
                 '}';
     }
 }

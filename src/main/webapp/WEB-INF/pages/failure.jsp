@@ -92,7 +92,7 @@
                             <p class="custom-text-center">Spring专项练习</p>
                         </div>
                         <div class="layui-col-md3">
-                            <a href="${pageContext.request.contextPath}/fail/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
+                            <a href="${pageContext.request.contextPath}/question/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
                         </div>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                             <p class="custom-text-center">Spring专项练习</p>
                         </div>
                         <div class="layui-col-md3">
-                            <a href="${pageContext.request.contextPath}/fail/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
+                            <a href="${pageContext.request.contextPath}/question/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
                         </div>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                             <p class="custom-text-center">Spring专项练习</p>
                         </div>
                         <div class="layui-col-md3">
-                            <a href="${pageContext.request.contextPath}/fail/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
+                            <a href="${pageContext.request.contextPath}/question/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@
                             <p class="custom-text-center">Spring专项练习</p>
                         </div>
                         <div class="layui-col-md3">
-                            <a href="${pageContext.request.contextPath}/fail/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
+                            <a href="${pageContext.request.contextPath}/question/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
                         </div>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
                             <p class="custom-text-center">Spring专项练习</p>
                         </div>
                         <div class="layui-col-md3">
-                            <a href="${pageContext.request.contextPath}/fail/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
+                            <a href="${pageContext.request.contextPath}/question/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
                         </div>
                     </div>
                 </div>

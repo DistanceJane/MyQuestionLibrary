@@ -1,113 +1,38 @@
 package com.question.handlers;
-
+import com.question.beans.Library;
+import com.question.beans.Subject;
 import com.question.beans.User;
-import com.question.service.IUserService;
-import net.sf.json.JSONObject;
+import com.question.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/personal")
 public class UserController {
 
     @Resource(name = "userService")
     private IUserService userService;
 
-    /**
-     * 跳转到登陆页面
-     * @return
-     */
-    @RequestMapping("/welcome.do")
-    public String welcome(){
-        return "/WEB-INF/pages/welcome.jsp";
-    }
+    @Resource(name = "subjectService")
+    private ISubjectService subjectService;
 
-    /**
-     * 将用户新注册的账号保存到数据库
-     * @param user
-     */
-    @RequestMapping("/register.do")
-    public String register(User user){
-        userService.register(user);
-        return "/WEB-INF/pages/welcome.jsp";
-    }
+    @Resource(name = "libraryService")
+    private ILibraryService libraryService;
 
-    /**
-     * 接收AJAX传送的username，验证该用户名是否存在
-     * @param username
-     */
-    @RequestMapping("/verifyUsername.do")
-    public void verifyUsername(String username, HttpServletResponse response) throws IOException {
-        boolean exist = userService.verifyUsername(username);
-        Map<String, Boolean> map = new HashMap<>();
-        map.put("exist", exist);
-        JSONObject json = JSONObject.fromObject(map);
-        String jsonStr = json.toString();
-        PrintWriter out = response.getWriter();
-        out.print(jsonStr);
-    }
+    @Resource(name = "questionService")
+    private IQuestionService questionService;
 
-    /**
-     * 将AJAX传到后台的数据进行验证，如果存在该用户就可以登录
-     * @param username
-     * @param password
-     * @param response
-     * @throws IOException
-     */
-    @RequestMapping("/verify.do")
-    public void verifyUser(String username, String password, HttpServletResponse response) throws IOException {
-        User user = userService.login(username, password);
-        Map<String, Boolean> map = new HashMap<>();
-        boolean verify = user == null ? false : true;
-        map.put("verify",verify);
-        JSONObject myJson = JSONObject.fromObject(map);
-        String jsonStr = myJson.toString();
-        PrintWriter out = response.getWriter();
-        out.print(jsonStr);
-    }
+    @Resource(name = "paperService")
+    private IPaperService paperService;
 
-
-    /**
-     * 根据用户名和密码查找用户信息,将用户信息放入缓存，跳转到系统首页
-     * @param username
-     * @param password
-     * @param session
-     * @return
-     */
-    @RequestMapping("/login.do")
-    public ModelAndView login(String username, String password, HttpSession session){
-        User user = userService.login(username, password);
-        session.setAttribute("user", user);
-        return new ModelAndView("/WEB-INF/pages/home.jsp");
-    }
-
-    /**
-     * 跳转到主页
-     * @return
-     */
-    @RequestMapping("/home.do")
-    public ModelAndView home(){
-        return new ModelAndView("/WEB-INF/pages/home.jsp");
-    }
-
-    /**
-     * 退出登录，将用户的信息从session清除
-     * @param session
-     * @return
-     */
-    @RequestMapping("/logout.do")
-    public String logout(HttpSession session){
-        session.removeAttribute("user");
-        return "/WEB-INF/pages/welcome.jsp";
-    }
+    @Resource(name = "noteService")
+    private INoteService noteService;
 
     /**
      *  进入个人主页
@@ -123,8 +48,16 @@ public class UserController {
      * @return
      */
     @RequestMapping("/library.do")
-    public ModelAndView showLibrary(){
-        return new  ModelAndView("/WEB-INF/pages/library.jsp");
+    public ModelAndView showLibrary(HttpSession session){
+
+        ModelAndView mv = new ModelAndView("/WEB-INF/pages/library.jsp");
+        User user = (User) session.getAttribute("user");
+        // 获取个人题库列表
+        List<Library> libraries = libraryService.listUserLibrary(user);
+        mv.addObject("libraries", libraries);
+        // 获取所有题库列表
+        List<Subject> subjects = subjectService.listAllSubject();
+        return mv;
     }
 
     /**
@@ -132,15 +65,20 @@ public class UserController {
      * @return
      */
     @RequestMapping("/exercise.do")
-    public ModelAndView doExercise(){
-        return new ModelAndView("/WEB-INF/pages/exercise.jsp");
+    public ModelAndView doExercise(HttpSession session){
+        ModelAndView mv = new ModelAndView("/WEB-INF/pages/exercise.jsp");
+        User user = (User) session.getAttribute("user");
+        // 获取个人题库列表
+        List<Library> libraries = libraryService.listUserLibrary(user);
+        mv.addObject("libraries", libraries);
+        return mv;
     }
 
     /**
      * 查看错题
      * @return
      */
-    @RequestMapping("failure.do")
+    @RequestMapping("/failure.do")
     public ModelAndView showFailure(){
         return new ModelAndView("/WEB-INF/pages/failure.jsp");
     }
@@ -149,7 +87,7 @@ public class UserController {
      * 查看试卷
      * @return
      */
-    @RequestMapping("paper.do")
+    @RequestMapping("/paper.do")
     public ModelAndView showPaper(){
         return new ModelAndView("/WEB-INF/pages/paper.jsp");
     }
@@ -159,16 +97,16 @@ public class UserController {
      * 查看个人笔记
      * @return
      */
-    @RequestMapping("note.do")
+    @RequestMapping("/note.do")
     public ModelAndView showNote(){
         return new ModelAndView("/WEB-INF/pages/note.jsp");
     }
 
     /**
-     * 查看个人信息
+     * 查看个人信息设置
      * @return
      */
-    @RequestMapping("info.do")
+    @RequestMapping("/info.do")
     public ModelAndView showInfo(){
         return new ModelAndView("/WEB-INF/pages/info.jsp");
     }
@@ -177,13 +115,19 @@ public class UserController {
      * 设置个人账户信息
      * @return
      */
-    @RequestMapping("setting.do")
+    @RequestMapping("/setting.do")
     public ModelAndView setting(){
         return new ModelAndView("/WEB-INF/pages/setting.jsp");
     }
 
-    @RequestMapping("recorder.do")
+    /**
+     * 个人记录页
+     * @return
+     */
+    @RequestMapping("/recorder.do")
     public ModelAndView recorder(){
         return new ModelAndView("/WEB-INF/pages/recorder.jsp");
     }
+
+
 }

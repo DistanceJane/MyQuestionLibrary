@@ -18,9 +18,12 @@
         update subject set subjectName = #{subjectName} where id = #{id}
     </update>
 
-    <select id="selectSubjectById">
+    <!--根据id查找学科信息-->
+    <select id="selectSubjectById" resultType="Subject">
         select * from subject where id = #{id}
     </select>
+
+
 
     <!--获取所有的学科信息-->
     <select id="listSubject" resultType="Subject">
@@ -43,7 +46,7 @@
     </update>
 
     <!--根据id查询某个章节信息-->
-    <select id="selectChapterById">
+    <select id="selectChapterById" resultType="Chapter">
         select * from chapter where id = #{id}
     </select>
 

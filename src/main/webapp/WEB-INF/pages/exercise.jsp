@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: gmcc
@@ -17,295 +18,53 @@
         </div>
     </div>
     <div class="layui-card-body">
-        <div class="custom-panel-box">
-            <div class="custom-panel-box-header">
-                <div class="layui-row">
-                    <div class="layui-col-md3"><h4><strong>编程语言</strong></h4></div>
-                    <div class="layui-col-md1 layui-col-md-offset8"><input type="checkbox"><span
-                            class="custom-check-text">全选</span></div>
-                </div>
-            </div>
-            <div class="custom-panel-box-body">
-                <div class="layui-row">
-                    <div class="layui-col-md4">
-                        <div class="custom-check-box">
-                            <div class="layui-row">
-                                <div class="layui-col-md4">
-                                    <input type="checkbox"><span
-                                        class="custom-check-text"><strong>C/C++</strong></span>
-                                </div>
-                                <div class="layui-col-md5">
-                                    <div class="custom-shift-down-process">
-                                        <div class="layui-progress ">
-                                            <div class="layui-progress-bar layui-bg-red"
-                                                 lay-percent="1/3"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    36/2873
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layui-col-md4">
-                        <div class="custom-check-box">
-                            <div class="layui-row">
-                                <div class="layui-col-md4">
-                                    <input type="checkbox"><span
-                                        class="custom-check-text"><strong>Java</strong></span>
-                                </div>
-                                <div class="layui-col-md5">
-                                    <div class="custom-shift-down-process">
-                                        <div class="layui-progress ">
-                                            <div class="layui-progress-bar layui-bg-red"
-                                                 lay-percent="15/100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    36/2873
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layui-col-md4">
-                        <div class="custom-check-box">
-                            <div class="layui-row">
-                                <div class="layui-col-md4">
-                                    <input type="checkbox"><span
-                                        class="custom-check-text"><strong>Php</strong></span>
-                                </div>
-                                <div class="layui-col-md5">
-                                    <div class="custom-shift-down-process">
-                                        <div class="layui-progress ">
-                                            <div class="layui-progress-bar layui-bg-red"
-                                                 lay-percent="23/100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    36/2873
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layui-col-md4">
-                        <div class="custom-check-box">
-                            <div class="layui-row">
-                                <div class="layui-col-md4">
-                                    <input type="checkbox"><span
-                                        class="custom-check-text"><strong>SQL</strong></span>
-                                </div>
-                                <div class="layui-col-md5">
-                                    <div class="custom-shift-down-process">
-                                        <div class="layui-progress ">
-                                            <div class="layui-progress-bar layui-bg-red"
-                                                 lay-percent="24/100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    36/2873
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layui-col-md4">
-                        <div class="custom-check-box">
-                            <div class="layui-row">
-                                <div class="layui-col-md4">
-                                    <input type="checkbox"><span
-                                        class="custom-check-text"><strong>C#</strong></span>
-                                </div>
-                                <div class="layui-col-md5">
-                                    <div class="custom-shift-down-process">
-                                        <div class="layui-progress ">
-                                            <div class="layui-progress-bar layui-bg-red"
-                                                 lay-percent="16/100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    36/2873
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="layui-col-md4">
-                        <div class="custom-check-box">
-                            <div class="layui-row">
-                                <div class="layui-col-md4">
-                                    <input type="checkbox"><span
-                                        class="custom-check-text"><strong>Go</strong></span>
-                                </div>
-                                <div class="layui-col-md5">
-                                    <div class="custom-shift-down-process">
-                                        <div class="layui-progress">
-                                            <div class="layui-progress-bar layui-bg-red"
-                                                 lay-percent="73/100"></div>
+        <c:forEach items="${libraries}" var="library">
+            <div class="custom-panel-box">
+                <div class="custom-panel-box-header">
+                    <div class="layui-row">
+                        <div class="layui-col-md3"><h4><strong>${library.subject.subjectName}</strong></h4></div>
+                        <div class="layui-col-md1 layui-col-md-offset8"><input type="checkbox"><span
+                                class="custom-check-text">全选</span></div>
+                    </div>
+                </div>
+                <div class="custom-panel-box-body">
+                    <div class="layui-row">
+                        <c:forEach items="${library.subject.chapters}" var="chapter">
+                            <div class="layui-col-md6">
+                                <div class="custom-check-box">
+                                    <div class="layui-row">
+                                        <div class="layui-col-md4">
+                                            <input type="checkbox">
+                                            <span class="custom-check-text"><strong><div class="custom-text-ellipsis">${chapter.chapterName}</div></strong>
+                                        </span>
+                                        </div>
+                                        <div class="layui-col-md5">
+                                            <div class="custom-shift-down-process">
+                                                <div class="layui-progress ">
+                                                    <div class="layui-progress-bar layui-bg-red"
+                                                         lay-percent="15/100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="layui-col-md3">
+                                            <div class="custom-text-center">36&nbsp;/&nbsp;378</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="layui-col-md3">
-                                    36/2873
-                                </div>
                             </div>
-                        </div>
+                        </c:forEach>
+
                     </div>
                 </div>
             </div>
-        </div>
-
-
-        <div class="custom-panel-box">
-            <div class="custom-panel-box-header">
-                <div class="layui-row">
-                    <div class="layui-col-md3"><h4><strong>Java语言程序设计</strong></h4></div>
-                    <div class="layui-col-md1 layui-col-md-offset8"><input type="checkbox"><span
-                            class="custom-check-text">全选</span></div>
-                </div>
-            </div>
-            <div class="custom-panel-box-body">
-                <div class="layui-row">
-                    <div class="layui-col-md4">
-                        <div class="custom-check-box">
-                            <div class="layui-row">
-                                <div class="layui-col-md4">
-                                    <input type="checkbox"><span
-                                        class="custom-check-text"><strong>变量</strong></span>
-                                </div>
-                                <div class="layui-col-md5">
-                                    <div class="custom-shift-down-process">
-                                        <div class="layui-progress ">
-                                            <div class="layui-progress-bar layui-bg-red"
-                                                 lay-percent="1/3"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    36/2873
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layui-col-md4">
-                        <div class="custom-check-box">
-                            <div class="layui-row">
-                                <div class="layui-col-md4">
-                                    <input type="checkbox"><span
-                                        class="custom-check-text"><strong>数组</strong></span>
-                                </div>
-                                <div class="layui-col-md5">
-                                    <div class="custom-shift-down-process">
-                                        <div class="layui-progress ">
-                                            <div class="layui-progress-bar layui-bg-red"
-                                                 lay-percent="15/100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    36/2873
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layui-col-md4">
-                        <div class="custom-check-box">
-                            <div class="layui-row">
-                                <div class="layui-col-md4">
-                                    <input type="checkbox"><span
-                                        class="custom-check-text"><strong>字符串</strong></span>
-                                </div>
-                                <div class="layui-col-md5">
-                                    <div class="custom-shift-down-process">
-                                        <div class="layui-progress ">
-                                            <div class="layui-progress-bar layui-bg-red"
-                                                 lay-percent="23/100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    36/2873
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layui-col-md4">
-                        <div class="custom-check-box">
-                            <div class="layui-row">
-                                <div class="layui-col-md4">
-                                    <input type="checkbox"><span
-                                        class="custom-check-text"><strong>方法</strong></span>
-                                </div>
-                                <div class="layui-col-md5">
-                                    <div class="custom-shift-down-process">
-                                        <div class="layui-progress ">
-                                            <div class="layui-progress-bar layui-bg-red"
-                                                 lay-percent="24/100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    36/2873
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layui-col-md4">
-                        <div class="custom-check-box">
-                            <div class="layui-row">
-                                <div class="layui-col-md4">
-                                    <input type="checkbox"><span
-                                        class="custom-check-text"><strong>集合</strong></span>
-                                </div>
-                                <div class="layui-col-md5">
-                                    <div class="custom-shift-down-process">
-                                        <div class="layui-progress ">
-                                            <div class="layui-progress-bar layui-bg-red"
-                                                 lay-percent="16/100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    36/2873
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="layui-col-md4">
-                        <div class="custom-check-box">
-                            <div class="layui-row">
-                                <div class="layui-col-md4">
-                                    <input type="checkbox"><span
-                                        class="custom-check-text"><strong>泛型</strong></span>
-                                </div>
-                                <div class="layui-col-md5">
-                                    <div class="custom-shift-down-process">
-                                        <div class="layui-progress">
-                                            <div class="layui-progress-bar layui-bg-red"
-                                                 lay-percent="73/100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    36/2873
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </c:forEach>
     </div>
-
     <div class="custom-margin-side">
         <form action="#" method="post">
             <div class="custom-padding-sm">
                 <span class="custom-check-text-sm custom-margin-side-sm">难度系数</span>
-                <span class="custom-check-text-sm">五个小星星</span>
+                <span class="custom-check-text-sm"><div id="level"></div></span>
             </div>
             <div class="custom-padding-sm">
                 <span class="custom-check-text-sm custom-margin-side-sm">出题来源</span>
@@ -347,7 +106,6 @@
                         <button class="layui-btn custom-vertical-button-center" style="margin-top: 10px">
                             生成试卷
                         </button>
-
                     </div>
                 </div>
             </div>
@@ -363,6 +121,8 @@
         var form = layui.form;
         var laypage = layui.laypage;
         var rate = layui.rate;
+        element.render();
+
         //…
 
         //执行一个laypage实例
@@ -372,10 +132,12 @@
             , limit: 8
         });
 
-        // //渲染一个rate
-        // var ins1 = rate.render({
-        //     elem: '#rate'  //绑定元素
-        // });
+        //渲染一个rate
+        var ins1 = rate.render({
+            elem: '#level'  //绑定元素
+        });
+
+        ins1.render();
     });
 
     $(document).ready(function () {

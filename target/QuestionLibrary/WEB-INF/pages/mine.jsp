@@ -124,41 +124,41 @@
 </body>
 <script>
     $(document).ready(function () {
-        $("#container").load("${pageContext.request.contextPath}/user/recorder.do");
+        $("#container").load("${pageContext.request.contextPath}/personal/recorder.do");
         initMenu();
     });
 
     function  initMenu() {
         $("#menu-home").click(function () {
-            $("#container").load("${pageContext.request.contextPath}/user/recorder.do");
+            $("#container").load("${pageContext.request.contextPath}/personal/recorder.do");
         });
 
         $("#menu-library").click(function () {
-            $("#container").load("${pageContext.request.contextPath}/user/library.do");
+            $("#container").load("${pageContext.request.contextPath}/personal/library.do");
         });
 
         $("#menu-exercise").click(function () {
-            $("#container").load("${pageContext.request.contextPath}/user/exercise.do");
+            $("#container").load("${pageContext.request.contextPath}/personal/exercise.do");
         });
 
         $("#menu-failure").click(function () {
-            $("#container").load("${pageContext.request.contextPath}/user/failure.do");
+            $("#container").load("${pageContext.request.contextPath}/personal/failure.do");
         });
 
         $("#menu-paper").click(function () {
-            $("#container").load("${pageContext.request.contextPath}/user/paper.do");
+            $("#container").load("${pageContext.request.contextPath}/personal/paper.do");
         });
 
         $("#menu-note").click(function () {
-            $("#container").load("${pageContext.request.contextPath}/user/note.do");
+            $("#container").load("${pageContext.request.contextPath}/personal/note.do");
         });
 
         $("#menu-info").click(function () {
-            $("#container").load("${pageContext.request.contextPath}/user/info.do");
+            $("#container").load("${pageContext.request.contextPath}/personal/info.do");
         });
 
         $("#menu-setting").click(function (){
-            $("#container").load("${pageContext.request.contextPath}/user/setting.do");
+            $("#container").load("${pageContext.request.contextPath}/personal/setting.do");
         });
     }
 </script>

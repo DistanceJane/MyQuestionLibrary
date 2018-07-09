@@ -5,16 +5,19 @@ package com.question.beans;
  */
 public class ChoiceQuestion {
     private Integer id;
+    //所对应的选择题id
+    private Integer choiceId;
     //所对应的选择题
     private Choice choice;
     // 记录用户的答案
     private String myAnswer;
     // 所属试卷
     private Paper paper;
+    // 所属试卷
+    private Integer paperId;
     // 分数
     private Integer score;
-    // 是否多选
-    private Integer mutiple;
+
 
     public ChoiceQuestion() {
     }
@@ -25,6 +28,14 @@ public class ChoiceQuestion {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getChoiceId() {
+        return choiceId;
+    }
+
+    public void setChoiceId(Integer choiceId) {
+        this.choiceId = choiceId;
     }
 
     public Choice getChoice() {
@@ -51,6 +62,14 @@ public class ChoiceQuestion {
         this.paper = paper;
     }
 
+    public Integer getPaperId() {
+        return paperId;
+    }
+
+    public void setPaperId(Integer paperId) {
+        this.paperId = paperId;
+    }
+
     public Integer getScore() {
         return score;
     }
@@ -59,23 +78,15 @@ public class ChoiceQuestion {
         this.score = score;
     }
 
-    public Integer getMutiple() {
-        return mutiple;
-    }
-
-    public void setMutiple(Integer mutiple) {
-        this.mutiple = mutiple;
-    }
 
     @Override
     public String toString() {
         return "ChoiceQuestion{" +
                 "id=" + id +
-                ", choice=" + choice +
+                ", choiceId=" + choiceId +
                 ", myAnswer='" + myAnswer + '\'' +
-                ", paper=" + paper +
+                ", paperId=" + paperId +
                 ", score=" + score +
-                ", mutiple=" + mutiple +
                 '}';
     }
 }

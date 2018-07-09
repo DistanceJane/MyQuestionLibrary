@@ -9,6 +9,8 @@ public class Chapter {
     private String chapterName;
     // 所属学科
     private Subject subject;
+    // 所属学科id
+    private Integer subjectId;
 
     public Chapter() {
     }
@@ -37,12 +39,20 @@ public class Chapter {
         this.subject = subject;
     }
 
+    public Integer getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Integer subjectId) {
+        this.subjectId = subjectId;
+    }
+
     @Override
     public String toString() {
         return "Chapter{" +
                 "id=" + id +
                 ", chapterName='" + chapterName + '\'' +
-                ", subject=" + subject +
+                ", subjectId=" + subjectId +
                 '}';
     }
 }
