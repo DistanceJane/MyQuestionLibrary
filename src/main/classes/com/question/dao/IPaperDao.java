@@ -4,7 +4,7 @@ import com.question.beans.*;
 
 import java.util.List;
 
-public interface IPaperQuestionDao {
+public interface IPaperDao {
     /**
      * 新增一道试卷上的选择题
      * @param choiceQuestion
