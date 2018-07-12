@@ -39,10 +39,10 @@ public interface INoteDao {
 
     /**
      * 获取某一个选择题试题下的所有笔记
-     * @param choice
+     * @param note
      * @return
      */
-    List<Note> listNoteUnderChoice(Choice choice);
+    List<Note> listNoteUnderQuestion(Note note);
 
     /**
      * 获取某一个判断题下的所有笔记

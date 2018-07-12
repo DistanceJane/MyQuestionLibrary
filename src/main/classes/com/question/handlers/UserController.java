@@ -1,8 +1,7 @@
 package com.question.handlers;
-import com.question.beans.Library;
-import com.question.beans.Subject;
-import com.question.beans.User;
+import com.question.beans.*;
 import com.question.service.*;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -79,8 +78,21 @@ public class UserController {
      * @return
      */
     @RequestMapping("/failure.do")
-    public ModelAndView showFailure(){
-        return new ModelAndView("/WEB-INF/pages/failure.jsp");
+    public ModelAndView showFailure(HttpSession session){
+        ModelAndView mv = new ModelAndView("/WEB-INF/pages/failure.jsp");
+        User user = (User) session.getAttribute("user");
+        // 获取试题列表
+        List<Question> questions = paperService.listUserFailure(user);
+        for(Question question : questions){
+            System.out.println(question);
+        }
+        mv.addObject("questions", questions);
+        // 统计总错题数
+        mv.addObject("failSum", questions.size());
+        // 未通过的错题数
+        Library libraryCount = libraryService.countLibrary(user);
+        mv.addObject("failCount", libraryCount.getFailQuantity());
+        return mv;
     }
 
     /**
@@ -88,8 +100,13 @@ public class UserController {
      * @return
      */
     @RequestMapping("/paper.do")
-    public ModelAndView showPaper(){
-        return new ModelAndView("/WEB-INF/pages/paper.jsp");
+    public ModelAndView showPaper(HttpSession session){
+        ModelAndView mv = new ModelAndView("/WEB-INF/pages/paper.jsp");
+        User user = (User) session.getAttribute("user");
+        List<Paper> papers = paperService.ListUserPaper(user);
+        mv.addObject("papers", papers);
+        mv.addObject("paperCount", papers.size());
+        return mv;
     }
 
 

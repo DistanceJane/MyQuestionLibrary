@@ -14,8 +14,8 @@
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/home.do">首页</a></li>
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/practice.do">题库</a></li>
-            <li class="layui-nav-item"><a href="">笔记</a></li>
-            <li class="layui-nav-item"><a href="">上传试题</a></li>
+            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/question/upload.do">笔记</a></li>
+            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/question/upload.do">上传试题</a></li>
             <li class="layui-nav-item">
                 <a href="javascript:;">后台管理</a>
                 <dl class="layui-nav-child">
@@ -35,13 +35,13 @@
                 <c:otherwise>
                     <li class="layui-nav-item">
                         <a href="javascript:;">
-                            <img src="../../images/you.jpg" class="layui-nav-img">
+                            <img src="${pageContext.request.contextPath}/images/you.jpg" class="layui-nav-img">
                             ${sessionScope.user.username}
                         </a>
                         <dl class="layui-nav-child">
-                            <dd><a href="/personal/mine.do">个人主页</a></dd>
-                            <dd><a href="/personal/mine.do">我的成就</a></dd>
-                            <dd><a href="/user/logout.do">退出登录</a></dd>
+                            <dd><a href="${pageContext.request.contextPath}/personal/mine.do">个人主页</a></dd>
+                            <dd><a href="${pageContext.request.contextPath}/personal/mine.do">我的成就</a></dd>
+                            <dd><a href="${pageContext.request.contextPath}/user/logout.do">退出登录</a></dd>
                         </dl>
                     </li>
                 </c:otherwise>
@@ -50,10 +50,10 @@
     </div>
 </div>
 <div class="custom-right-nav">
-    <a class="custom-right-nav-item" id="back_to_top"><img src="../../images/backToTop.png" class="custom-nav-right-img"></a>
-    <a class="custom-right-nav-item"><img src="../../images/feedback.png" class="custom-nav-right-img"></a>
-    <a class="custom-right-nav-item"><img src="../../images/weChat.png" class="custom-nav-right-img"></a>
-    <a class="custom-right-nav-item"><img src="../../images/APP.png" class="custom-nav-right-img"></a>
+    <a class="custom-right-nav-item" id="back_to_top"><img src="${pageContext.request.contextPath}/images/backToTop.png" class="custom-nav-right-img"></a>
+    <a class="custom-right-nav-item"><img src="${pageContext.request.contextPath}/images/feedback.png" class="custom-nav-right-img"></a>
+    <a class="custom-right-nav-item"><img src=${pageContext.request.contextPath}/images/weChat.png" class="custom-nav-right-img"></a>
+    <a class="custom-right-nav-item"><img src="${pageContext.request.contextPath}/images/APP.png" class="custom-nav-right-img"></a>
 </div>
 
 <script src="../../js/custom.js"></script>

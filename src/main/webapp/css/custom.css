@@ -2,6 +2,7 @@
 .custom-body {
     padding-top: 100px;
     background: #eeeeee;
+    min-height: 580px;
 }
 
 .custom-fix-top{
@@ -155,7 +156,6 @@ body{
 
 .custom-text-center{
     text-align: center;
-    color: #0C0C0C;
 }
 
 .custom-home-photo{
@@ -436,7 +436,7 @@ body{
 .custom-note-like{
     width: 16px;
     height: 16px;
-    margin-left: 600px;
+    margin-left: 550px;
 }
 
 .custom-speaker-panel{
@@ -608,6 +608,29 @@ body{
 
 .custom-margin-right{
     margin-left: 500px;
+}
+
+.custom-show{
+    visibility: visible;
+}
+
+.custom-upload-question-btn{
+    float: right;
+    margin: 10px 20px;
+}
+
+.custom-upload-question-picture{
+    margin-left: 20px;
+}
+
+.custom-question-picture{
+    height: 200px;
+    width: 250px;
+    padding-bottom: 10px;
+}
+
+.custom-upload-question-title{
+    margin-left: 10px;
 }
 
 

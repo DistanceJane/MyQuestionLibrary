@@ -1,10 +1,7 @@
 package com.question.service.impl;
 
 import com.question.beans.*;
-import com.question.dao.ILibraryDao;
-import com.question.dao.INoteDao;
-import com.question.dao.IQuestionDao;
-import com.question.dao.ISubjectDao;
+import com.question.dao.*;
 import com.question.service.INoteService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +20,18 @@ public class NoteServiceImpl implements INoteService {
 
     @Resource(name = "ISubjectDao")
    private ISubjectDao subjectDao;
+
+    @Resource(name = "IUserDao")
+    private IUserDao userDao;
+    @Override
+    public List<Note> listNoteUnderQuestion(Note note) {
+        List<Note> notes = noteDao.listNoteUnderQuestion(note);
+        for (Note no : notes) {
+            User user = userDao.selectUserById(no.getUserId());
+            no.setUser(user);
+        }
+        return notes;
+    }
 
     /**
      * 获取用户的笔记列表

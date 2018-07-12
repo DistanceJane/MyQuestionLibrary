@@ -24,7 +24,6 @@
     </select>
 
 
-
     <!--获取所有的学科信息-->
     <select id="listSubject" resultType="Subject">
         select * from subject
@@ -54,4 +53,6 @@
     <select id="listChapterUnderSubject" resultType="Chapter">
         select * from chapter where subjectId = #{id}
     </select>
+
+
 </mapper>

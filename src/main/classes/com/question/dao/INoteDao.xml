@@ -29,9 +29,9 @@
         select * from note where id = #{id}
     </select>
 
-    <!--获取某一个选择题试题下的所有笔记-->
-    <select id="listNoteUnderChoice" resultType="Note">
-        select * from note where typeId = 0 and questionId = #{id}
+    <!--获取某一个试题下的所有笔记-->
+    <select id="listNoteUnderQuestion" resultType="Note">
+        select * from note where typeId = #{typeId} and questionId = #{questionId}
     </select>
 
     <!--获取某一个判断题下的所有笔记-->

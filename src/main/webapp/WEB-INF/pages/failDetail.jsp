@@ -33,20 +33,23 @@
                         <span class="custom-question-type"><strong>[单选题]</strong></span>
                     </div>
                     <div class="layui-card-body">
-                        <p>在Spring框架中获取连接池可以有哪些方式？</p>
-                        <p>A.C3P0数据源</p>
-                        <p>B.Spring的数据源实现类(DriverManagerDataSource)</p>
-                        <p>C.Spring的数据源实现类(DriverManagerDataSource)</p>
-                        <p>D.获取JNDI数据源</p>
-
+                        <p>${question.title}</p>
+                        <c:forEach items="${question.options}" var="option">
+                            <p>${option.header}、${option.content}</p>
+                        </c:forEach>
                     </div>
                     <div class="layui-card-header">
                         <div class="layui-row">
                             <div class="layui-col-md4">
-                                正确答案A、B、C、D
+                                正确答案
+                                <c:forEach items="${question.options}" var="opt">
+                                    <c:if test="${opt.correct == 1}">
+                                        ${opt.header}、
+                                    </c:if>
+                                </c:forEach>
                             </div>
                             <div class="layui-col-md4">
-                                你的答案A、B、D
+                                你的答案${userAnswer}
                             </div>
                             <div class="layui-col-md4">
                                 <button class="layui-btn">添加笔记</button>
@@ -64,65 +67,23 @@
                     </div>
                     <div class="layui-card-body">
                         <div class="custom-speaker-panel">
-                            <div class="layui-row">
-                                <div class="custom-speaker">
-                                    <img class="custom-speaker-img" src="../../images/you.jpg">
-                                    <h6 class="custom-text-center">小居居</h6>
-                                </div>
-                                <div class="custom-speaker-text">
-                                    <img src="${pageContext.request.contextPath}/images/like.png" class="custom-speaker-like">
-                                    <span>(30)</span>
-                                    <p>
-                                        Bean的创建时会提到Spring的单例模式，就是说默认情况下Spring中定义的Bean是以单例模式创建的。如果以前了解设计模式中的单例模式的话很容易对这种说法产生先入为主的印象。事实上，Spring中的单例模式还有许多需要注意的地方。
-                                        在GoF中的单例模式是指一个ClassLoader中只存在类一个实例。
-                                        而在Spring中的单例实际上更确切的说应该是：
-                                        1.每个Spring Container中定义的Bean只存在一个实例
-                                        2.每个Bean定义只存在一个实例。
-                                    </p>
-                                    <span class="custom-note-datetime"><strong>发布于2018-06-30 17:25</strong></span>
-                                </div>
+                            <c:forEach items="${notes}" var="note">
+                                <div class="layui-row">
+                                    <div class="custom-speaker">
+                                        <img class="custom-speaker-img" src="${pageContext.request.contextPath}/images/you.jpg">
+                                        <h6 class="custom-text-center">${note.user.username}</h6>
+                                    </div>
+                                    <div class="custom-speaker-text">
+                                        <img src="${pageContext.request.contextPath}/images/like.png" class="custom-speaker-like">
+                                        <span>(${note.like})</span>
+                                        <p>
+                                            ${note.content}
+                                        </p>
+                                        <span class="custom-note-datetime"><strong>发布于${note.time}</strong></span>
+                                    </div>
 
-                            </div>
-
-                            <div class="layui-row">
-                                <div class="custom-speaker">
-                                    <img class="custom-speaker-img" src="${pageContext.request.contextPath}/images/you.jpg">
-                                    <h6 class="custom-text-center">小居居</h6>
                                 </div>
-                                <div class="custom-speaker-text">
-                                    <img src="${pageContext.request.contextPath}/images/like.png" class="custom-speaker-like">
-                                    <span>(30)</span>
-                                    <p>
-                                        Bean的创建时会提到Spring的单例模式，就是说默认情况下Spring中定义的Bean是以单例模式创建的。如果以前了解设计模式中的单例模式的话很容易对这种说法产生先入为主的印象。事实上，Spring中的单例模式还有许多需要注意的地方。
-                                        在GoF中的单例模式是指一个ClassLoader中只存在类一个实例。
-                                        而在Spring中的单例实际上更确切的说应该是：
-                                        1.每个Spring Container中定义的Bean只存在一个实例
-                                        2.每个Bean定义只存在一个实例。
-                                    </p>
-                                    <span class="custom-note-datetime"><strong>发布于2018-06-30 17:25</strong></span>
-                                </div>
-
-                            </div>
-
-                            <div class="layui-row">
-                                <div class="custom-speaker">
-                                    <img class="custom-speaker-img" src="${pageContext.request.contextPath}/images/you.jpg">
-                                    <h6 class="custom-text-center">小居居</h6>
-                                </div>
-                                <div class="custom-speaker-text">
-                                    <img src="${pageContext.request.contextPath}/images/like.png" class="custom-speaker-like">
-                                    <span>(30)</span>
-                                    <p>
-                                        Bean的创建时会提到Spring的单例模式，就是说默认情况下Spring中定义的Bean是以单例模式创建的。如果以前了解设计模式中的单例模式的话很容易对这种说法产生先入为主的印象。事实上，Spring中的单例模式还有许多需要注意的地方。
-                                        在GoF中的单例模式是指一个ClassLoader中只存在类一个实例。
-                                        而在Spring中的单例实际上更确切的说应该是：
-                                        1.每个Spring Container中定义的Bean只存在一个实例
-                                        2.每个Bean定义只存在一个实例。
-                                    </p>
-                                    <span class="custom-note-datetime"><strong>发布于2018-06-30 17:25</strong></span>
-                                </div>
-
-                            </div>
+                            </c:forEach>
                             <div class="custom-horizon-box">
                                 <div class="custom-horizon-center">
                                     <div id="page"></div>
@@ -150,20 +111,18 @@
                     <div class="layui-card-body">
                         <div>
                             <span class="custom-upload-label">知识点：</span><span
-                                class="custom-home-username">Spring</span>
+                                class="custom-home-username">${question.chapter.chapterName}</span>
                         </div>
                         <div>
-                            <span class="custom-upload-label">上传者：</span><span class="custom-home-username">小居居</span>
+                            <span class="custom-upload-label">上传者：</span><span class="custom-home-username">${question.user.username}</span>
                         </div>
                         <div>
-                            <span class="custom-upload-label">难度：</span><span class="custom-home-username">三星</span>
+                            <span class="custom-upload-label">难度：</span><span class="custom-home-username">${question.level}</span>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 </div>
 </div>

@@ -29,7 +29,7 @@
                     <div class="custom-my-info">
                         <div class="layui-row">
                             <div class="layui-col-md2 text-center">
-                                <img src="../../images/you.jpg" class="custom-my-info-photo img-circle">
+                                <img src="${pageContext.request.contextPath}/images/you.jpg" class="custom-my-info-photo img-circle">
                             </div>
                             <div class="layui-col-md4">
                                 <div>
@@ -60,45 +60,45 @@
                         <div class="layui-card">
                             <div class="layui-card-header">
                                 <a id="menu-home" href="#home" style="text-decoration: none">
-                                    <img class="custom-left-menu-img" src="../../images/home.png">首页
+                                    <img class="custom-left-menu-img" src="${pageContext.request.contextPath}/images/home.png">首页
                                 </a>
                             </div>
                             <div class="layui-card-header">
                                 <a id="menu-library" href="#library" style="text-decoration: none">
-                                    <img class="custom-left-menu-img" src="../../images/lib.png">题库
+                                    <img class="custom-left-menu-img" src="${pageContext.request.contextPath}/images/lib.png">题库
                                 </a>
 
                             </div>
                             <div class="layui-card-header">
                                 <a id="menu-exercise" href="#exercise" style="text-decoration: none">
-                                    <img class="custom-left-menu-img" src="../../images/icon_exercise.png">刷题
+                                    <img class="custom-left-menu-img" src="${pageContext.request.contextPath}/images/icon_exercise.png">刷题
                                 </a>
                             </div>
                             <div class="layui-card-header">
                                 <a  id="menu-failure" href="#failure" style="text-decoration: none">
-                                    <img class="custom-left-menu-img" src="../../images/unpassed.png">错题
+                                    <img class="custom-left-menu-img" src="${pageContext.request.contextPath}/images/unpassed.png">错题
                                 </a>
                             </div>
                             <div class="layui-card-header" >
                                 <a id="menu-paper" href="#paper" style="text-decoration: none">
-                                    <img class="custom-left-menu-img" src="../../images/icon_paper.png">试卷
+                                    <img class="custom-left-menu-img" src="${pageContext.request.contextPath}/images/icon_paper.png">试卷
                                 </a>
 
                             </div>
                             <div class="layui-card-header">
                                 <a id="menu-note" href="#note" style="text-decoration: none" >
-                                    <img class="custom-left-menu-img" src="../../images/icon_note.png">笔记
+                                    <img class="custom-left-menu-img" src="${pageContext.request.contextPath}/images/icon_note.png">笔记
                                 </a>
                             </div>
                             <div class="layui-card-header">
                                 <a id="menu-info" href="#info" style="text-decoration: none">
-                                    <img class="custom-left-menu-img" src="../../images/icon_info.png">基本资料
+                                    <img class="custom-left-menu-img" src="${pageContext.request.contextPath}/images/icon_info.png">基本资料
                                 </a>
 
                             </div>
                             <div class="layui-card-header">
                                 <a id="menu-setting" href="#setting" style="text-decoration: none">
-                                    <img class="custom-left-menu-img" src="../../images/icon_setting.png">设置
+                                    <img class="custom-left-menu-img" src="${pageContext.request.contextPath}/images/icon_setting.png">设置
                                 </a>
                             </div>
                         </div>

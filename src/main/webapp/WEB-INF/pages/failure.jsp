@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: gmcc
@@ -17,10 +18,10 @@
         </div>
         <div class="layui-row">
             <div class="layui-col-md3">
-                <span class="custom-text-sm-left">历史总错题数(230)</span>
+                <span class="custom-text-sm-left">历史总错题数(${failSum})</span>
             </div>
             <div class="layui-col-md3">
-                <span class="custom-text-sm-left">未通过错题总数(162)</span>
+                <span class="custom-text-sm-left">未通过错题总数(${failCount})</span>
             </div>
             <div class="layui-col-md3 layui-col-md-offset3">
                 <button class="layui-btn pull-right">错题组卷练习</button>
@@ -78,115 +79,38 @@
                     </div>
                 </div>
             </div>
-            <div class="custom-list-item">
-                <div class="custom-text-center-all">
-                    <div class="layui-row">
-                        <div class="layui-col-md5">
-                            <p class="custom-text-center">spring的PROPAGATION_REQUIRES_NEW事务，下面哪些说法是正确的？
-                            </p>
-                        </div>
-                        <div class="layui-col-md2">
-                            <p class="custom-text-center">数据库,Spring</p>
-                        </div>
-                        <div class="layui-col-md2">
-                            <p class="custom-text-center">Spring专项练习</p>
-                        </div>
-                        <div class="layui-col-md3">
-                            <a href="${pageContext.request.contextPath}/question/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="custom-list-item">
-                <div class="custom-text-center-all">
-                    <div class="layui-row">
-                        <div class="layui-col-md5">
-                            <p class="custom-text-center">spring的PROPAGATION_REQUIRES_NEW事务，下面哪些说法是正确的？
-                            </p>
-                        </div>
-                        <div class="layui-col-md2">
-                            <p class="custom-text-center">数据库,Spring</p>
-                        </div>
-                        <div class="layui-col-md2">
-                            <p class="custom-text-center">Spring专项练习</p>
-                        </div>
-                        <div class="layui-col-md3">
-                            <a href="${pageContext.request.contextPath}/question/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
+            <c:forEach items="${questions}" var="question">
+                <div class="custom-list-item">
+                    <div class="custom-text-center-all">
+                        <div class="layui-row">
+                            <div class="layui-col-md5">
+                                <p class="custom-text-center">${question.title}
+                                </p>
+                            </div>
+                            <div class="layui-col-md2">
+                                <p class="custom-text-center">${question.chapter.chapterName}</p>
+                            </div>
+                            <div class="layui-col-md2">
+                                <p class="custom-text-center">${question.subject.subjectName}</p>
+                            </div>
+                            <div class="layui-col-md3">
+                                <a href="${pageContext.request.contextPath}/question/${question.typeId}/${question.id}/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
-            <div class="custom-list-item">
-                <div class="custom-text-center-all">
-                    <div class="layui-row">
-                        <div class="layui-col-md5">
-                            <p class="custom-text-center">spring的PROPAGATION_REQUIRES_NEW事务，下面哪些说法是正确的？
-                            </p>
-                        </div>
-                        <div class="layui-col-md2">
-                            <p class="custom-text-center">数据库,Spring</p>
-                        </div>
-                        <div class="layui-col-md2">
-                            <p class="custom-text-center">Spring专项练习</p>
-                        </div>
-                        <div class="layui-col-md3">
-                            <a href="${pageContext.request.contextPath}/question/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="custom-list-item">
-                <div class="custom-text-center-all">
-                    <div class="layui-row">
-                        <div class="layui-col-md5">
-                            <p class="custom-text-center">spring的PROPAGATION_REQUIRES_NEW事务，下面哪些说法是正确的？
-                            </p>
-                        </div>
-                        <div class="layui-col-md2">
-                            <p class="custom-text-center">数据库,Spring</p>
-                        </div>
-                        <div class="layui-col-md2">
-                            <p class="custom-text-center">Spring专项练习</p>
-                        </div>
-                        <div class="layui-col-md3">
-                            <a href="${pageContext.request.contextPath}/question/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="custom-list-item">
-                <div class="custom-text-center-all">
-                    <div class="layui-row">
-                        <div class="layui-col-md5">
-                            <p class="custom-text-center">spring的PROPAGATION_REQUIRES_NEW事务，下面哪些说法是正确的？
-                            </p>
-                        </div>
-                        <div class="layui-col-md2">
-                            <p class="custom-text-center">数据库,Spring</p>
-                        </div>
-                        <div class="layui-col-md2">
-                            <p class="custom-text-center">Spring专项练习</p>
-                        </div>
-                        <div class="layui-col-md3">
-                            <a href="${pageContext.request.contextPath}/question/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+            </c:forEach>
         <div class="custom-super-divider"></div>
         <div class="custom-horizon-box">
             <div class="custom-horizon-center" id="page">
-
+                <%--=====================================--%>
+                <%--===================分页栏============--%>
+                <%--======================================--%>
             </div>
         </div>
     </div>
 </div>
-
+</div>
 <script>
     //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
     layui.use(['element', 'form', 'laypage'], function () {

@@ -1,7 +1,6 @@
 package com.question.service;
 
-import com.question.beans.Paper;
-import com.question.beans.User;
+import com.question.beans.*;
 
 import java.util.List;
 
@@ -16,4 +15,33 @@ public interface IPaperService {
      * @return
      */
     int countPaperFinish(User user);
+
+
+    /**
+     * 获取用户的错题列表
+     * @param user
+     * @return
+     */
+    List<Question> listUserFailure(User user);
+
+    /**
+     * 查询试题信息
+     * @param id
+     * @return
+     */
+    ChoiceQuestion showChoiceQuestion(int id);
+
+    /**
+     * 查询判断题信息
+     * @param id
+     * @return
+     */
+    JudgementQuestion showJudgementQuestion(int id);
+
+    /**
+     * 查询简答题信息
+     * @param id
+     * @return
+     */
+    ShorterQuestion showShorterQuestion(int id);
 }

@@ -50,33 +50,33 @@ public interface IQuestionDao {
      * 添加某个选择题的一个选项
      * @param option
      */
-    void insertOption(Option option);
+    void insertChoiceOption(ChoiceOption option);
 
     /**
      * 删除某个选择题的一个选项
      * @param id
      */
-    void deleteOption(int id);
+    void deleteChoiceOption(int id);
 
     /**
      * 修改某个选择题的某个选项
      * @param option
      */
-    void updateOption(Option option);
+    void updateChoiceOption(ChoiceOption option);
 
     /**
      * 根据id查询某个选择题的选项
      * @param id
      * @return
      */
-    Option selectOptionById(int id);
+    ChoiceOption selectChoiceOptionById(int id);
 
     /**
      * 获取某个试题下的所有选项
      * @param choice
      * @return
      */
-    List<Option> listOptionUnderChoice(Choice choice);
+    List<ChoiceOption> listChoiceOptionUnderChoice(Choice choice);
 
     /**
      * 录入一道判断题

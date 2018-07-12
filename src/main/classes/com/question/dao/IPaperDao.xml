@@ -5,6 +5,7 @@
 <mapper namespace="com.question.dao.IPaperDao">
 
 
+    <!--新增一套试卷记录-->
     <insert id="insertPaper">
         insert into paper(libraryId, createTime, userId) values (#{libraryId}, #{createTime}, #{userId})
     </insert>
@@ -24,9 +25,9 @@
     </insert>
 
     <!--根据id查询试卷上的选择题-->
-    <delete id="selectChoiceQuestionById">
-        delete from choiceQuestion where id = #{id}
-    </delete>
+    <select id="selectChoiceQuestionById" resultType="ChoiceQuestion">
+        select * from choiceQuestion where id = #{id}
+    </select>
 
     <!--列举某张试卷上的所有选择题-->
     <select id="listChoiceQuestionUnderPaper" resultType="ChoiceQuestion">
@@ -40,7 +41,7 @@
     </insert>
 
     <!--根据id查询试卷上的判断题-->
-    <select id="selectJudgementQuestionById">
+    <select id="selectJudgementQuestionById" resultType="JudgementQuestion">
         select * from judgementQuestion where id = #{id}
     </select>
 
@@ -76,12 +77,12 @@
     </delete>
 
     <!--查询一道错题记录-->
-    <select id="selectFailBuId">
+    <select id="selectFailBuId" resultType="Fail">
         select * from fail where id = #{id}
     </select>
 
     <!--获取某一用户的所有错题集-->
-    <select id="listFailUnderUser">
+    <select id="listFailUnderUser" resultType="Fail">
         select * from fail where userId = #{id}
     </select>
 </mapper>

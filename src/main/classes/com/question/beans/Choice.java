@@ -1,77 +1,23 @@
 package com.question.beans;
 
+import java.util.List;
+
 /**
  * 选择题
  */
-public class Choice {
-    private Integer id;
-    // 题目
-    private String title;
-    // 图片
-    private String picture;
+public class Choice extends Question{
+
     // 是否多选
     private Integer multiple;
-    // 难度系数
-    private Integer level;
-    // 所属章节
-    private Chapter chapter;
     // 所属章节id
     private Integer chapterId;
     // 录入来源
-    private User user;
-    // 录入员id
     private Integer userId;
+    // 选择题的所有选项
+    private List<ChoiceOption> options;
 
 
     public Choice() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
-
-    public Integer getLevel() {
-        return level;
-    }
-
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
-
-    public Chapter getChapter() {
-        return chapter;
-    }
-
-    public void setChapter(Chapter chapter) {
-        this.chapter = chapter;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Integer getMultiple() {
@@ -98,15 +44,21 @@ public class Choice {
         this.userId = userId;
     }
 
+    public List<ChoiceOption> getOptions() {
+        return options;
+    }
+
+    public void setOptions(List<ChoiceOption> options) {
+        this.options = options;
+    }
+
     @Override
     public String toString() {
         return "Choice{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", picture='" + picture + '\'' +
-                ", level=" + level +
+                "id=" + getId() +
+                "multiple=" + multiple +
                 ", chapterId=" + chapterId +
-                ", user=Id" + userId +
+                ", userId=" + userId +
                 '}';
     }
 }

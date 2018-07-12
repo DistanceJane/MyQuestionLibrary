@@ -136,8 +136,6 @@
         var ins1 = rate.render({
             elem: '#level'  //绑定元素
         });
-
-        ins1.render();
     });
 
     $(document).ready(function () {

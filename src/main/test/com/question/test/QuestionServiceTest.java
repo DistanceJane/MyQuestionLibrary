@@ -30,4 +30,14 @@ public class QuestionServiceTest {
         choice.setTitle("aaaaa");
         choice.setUser(user);
     }
+
+    @Test
+    public void testAddChoice() {
+        Choice choice = new Choice();
+        choice.setTitle("aaaaaaaaaaaa");
+        choice.setLevel(3);
+        choice.setUserId(1);
+        choice.setChapterId(1);
+        questionService.addChoice(choice);
+    }
 }

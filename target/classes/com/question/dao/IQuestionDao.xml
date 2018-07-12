@@ -5,7 +5,11 @@
 <mapper namespace="com.question.dao.IQuestionDao">
     <!--录入一道选择题-->
     <insert id="insertChoice">
-        insert into choice(title, picture, level, chapterId, userId) values (#{title}, #{picture}, #{level}, #{chapter.id}, #{user.id})
+        insert into choice(title, picture, level, chapterId, userId) values (#{title}, #{picture}, #{level}, #{chapterId}, #{userId})
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select @@identity
+        </selectKey>
+
     </insert>
 
     <!--根据id删除一道选择题-->
@@ -34,33 +38,33 @@
     </select>
 
     <!--添加某个选择题的一个选项-->
-    <insert id="insertOption">
-        insert into option(choiceId, header, content, correct) values (#{choice.id}, #{header}, #{content}, #{correct})
+    <insert id="insertChoiceOption">
+        insert into choiceOption(choiceId, header, content, correct) values (#{choiceId}, #{header}, #{content}, #{correct})
     </insert>
 
     <!--删除某个选择题的一个选项-->
-    <delete id="deleteOption">
-        delete from option where id = #{id}
+    <delete id="deleteChoiceOption">
+        delete from choiceOption where id = #{id}
     </delete>
 
     <!--修改某个选择题的某个选项-->
-    <update id="updateOption">
-        update option set header = #{header}, content = #{content}, correct = #{correct} where id = #{id}
+    <update id="updateChoiceOption">
+        update choiceOption set header = #{header}, content = #{content}, correct = #{correct} where id = #{id}
     </update>
 
     <!--根据id查询某个选择题的选项-->
-    <select id="selectOptionById">
-        select * from option where id = #{id}
+    <select id="selectChoiceOptionById" resultType="ChoiceOption">
+        select * from choiceOption where id = #{id}
     </select>
 
     <!--获取某个试题下的所有选项-->
-    <select id="listOptionUnderChoice" resultType="Option">
-        select * from OPTION where choiceId = #{id}
+    <select id="listChoiceOptionUnderChoice" resultType="ChoiceOption">
+        select * from choiceOption where choiceId = #{id}
     </select>
 
     <!--录入一道判断题-->
     <insert id="insertJudgement">
-        insert into judgement(title, answer, level, chapterId, userId) values (#{title}, #{answer}, #{level}, #{chapter.id}, #{user.id})
+        insert into judgement(title, answer, level, chapterId, userId) values (#{title}, #{answer}, #{level}, #{chapterId}, #{userId})
     </insert>
 
     <!--根据删除一道判断题-->
