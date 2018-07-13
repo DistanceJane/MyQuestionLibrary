@@ -21,4 +21,12 @@ public interface ILibraryService {
      * @return
      */
     Library countLibrary(User user);
+
+    /**
+     * 通过用户和学科id查找试题库信息
+     * @param id
+     * @param id1
+     * @return
+     */
+    Library selectLibraryByUserAndSubject(Integer id, Integer id1);
 }

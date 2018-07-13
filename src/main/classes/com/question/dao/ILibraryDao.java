@@ -3,6 +3,7 @@ package com.question.dao;
 import com.question.beans.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ILibraryDao {
     /**
@@ -69,4 +70,11 @@ public interface ILibraryDao {
      * @return
      */
     List<Export> listExportUnderUser(User user);
+
+    /**
+     * 通过用户和学科查找试题库信息
+     * @param map
+     * @return
+     */
+    Library selectLibraryByUserAndSubject(Map<String,Object> map);
 }

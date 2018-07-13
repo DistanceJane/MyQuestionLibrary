@@ -19,7 +19,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="${pageContext.request.contextPath}/layui/layui.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/layui/css/layui.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/bootstrap-icheck/square/green.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/custom.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/jquery/jquery.min.js"></script>

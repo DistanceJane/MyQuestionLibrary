@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="${pageContext.request.contextPath}/layui/layui.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/layui/css/layui.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/bootstrap-icheck/square/green.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/custom.css" rel="stylesheet">

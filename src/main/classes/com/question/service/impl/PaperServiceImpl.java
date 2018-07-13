@@ -11,7 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service("paperService")
 public class PaperServiceImpl implements IPaperService {
@@ -112,5 +114,33 @@ public class PaperServiceImpl implements IPaperService {
     public ShorterQuestion showShorterQuestion(int id) {
         ShorterQuestion shorterQuestion = paperDao.selectShorterQuestionById(id);
         return shorterQuestion;
+    }
+
+
+    @Override
+    public List<Integer> listFailChoiceUnderUser(Integer id) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("type", 1);
+        map.put("userId", id);
+        List<Integer> idList = paperDao.fetchQuestionIdListByUser(map);
+        return idList;
+    }
+
+    @Override
+    public List<Integer> listFailJudgementUnderUser(Integer id) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("type", 2);
+        map.put("userId", id);
+        List<Integer> idList = paperDao.fetchQuestionIdListByUser(map);
+        return idList;
+    }
+
+    @Override
+    public List<Integer> listFailShorterUnderUser(Integer id) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("type", 3);
+        map.put("userId", id);
+        List<Integer> idList = paperDao.fetchQuestionIdListByUser(map);
+        return idList;
     }
 }

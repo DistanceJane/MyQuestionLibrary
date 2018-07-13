@@ -9,11 +9,13 @@ import com.sun.deploy.net.HttpResponse;
 import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -83,26 +85,26 @@ public class QuestionController {
         return mv;
     }
 
-    @RequestMapping("/upload.do")
+    @RequestMapping("/uploadChoice.do")
     public ModelAndView uploadQuestion(){
 
-        return new ModelAndView("/WEB-INF/pages/uploadQuestion.jsp");
+        return new ModelAndView("/WEB-INF/pages/uploadChoice.jsp");
     }
 
+
     @RequestMapping("/option.do")
-    public ModelAndView uploadChoice(int chapterId, int typeId, String title, int level, HttpSession session){
+    public ModelAndView uploadChoice(int chapterId, String title, int level, HttpSession session){
         ModelAndView mv = new ModelAndView("/WEB-INF/pages/uploadOption.jsp");
         User user = (User) session.getAttribute("user");
-        if(typeId == 1){
-            Choice choice = new Choice();
-            choice.setUserId(user.getId());
-            choice.setChapterId(chapterId);
-            choice.setTitle(title);
-            choice.setLevel(level);
-            questionService.addChoice(choice);
-            System.out.println("choice id = "+choice.getId());
-            mv.addObject("questionId", choice.getId());
-        }
+        Choice choice = new Choice();
+        choice.setUserId(user.getId());
+        choice.setChapterId(chapterId);
+        choice.setTitle(title);
+        choice.setLevel(level);
+        questionService.addChoice(choice);
+        System.out.println("choice id = "+choice.getId());
+        mv.addObject("questionId", choice.getId());
+
         return mv;
     }
 
@@ -118,7 +120,47 @@ public class QuestionController {
             choiceOption.setChoiceId(questionId);
             questionService.addOptionForChoice(choiceOption);
         }
+        return mv;
+    }
 
+    @RequestMapping("/uploadJudgement.do")
+    public ModelAndView uploadJudgement(){
+        ModelAndView mv =  new ModelAndView("/WEB-INF/pages/uploadJudgement.jsp");
+
+        return mv;
+    }
+
+    @RequestMapping("/saveJudgement.do")
+    public ModelAndView saveJudgement(int chapterId, String title, int level, int answer, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        Judgement judgement = new Judgement();
+        judgement.setTitle(title);
+        judgement.setAnswer(answer);
+        judgement.setLevel(level);
+        judgement.setChapterId(chapterId);
+        judgement.setUserId(user.getId());
+        questionService.addJudgement(judgement);
+        System.out.println(judgement);
+        return new ModelAndView("forward:uploadJudgement.do");
+    }
+
+    @RequestMapping("/uploadShorter.do")
+    public ModelAndView uploadShorter(){
+        ModelAndView mv =  new ModelAndView("/WEB-INF/pages/uploadShorter.jsp");
+        return mv;
+    }
+
+    @RequestMapping("/saveShorter.do")
+    public ModelAndView saveShorter(int chapterId, String title, int level, String answer, HttpSession session){
+        ModelAndView mv = new ModelAndView("forward:uploadShorter.do");
+        User user = (User) session.getAttribute("user");
+        Shorter shorter = new Shorter();
+        shorter.setTitle(title);
+        shorter.setAnswer(answer);
+        shorter.setLevel(level);
+        shorter.setChapterId(chapterId);
+        shorter.setUserId(user.getId());
+        questionService.addShorter(shorter);
         return mv;
     }
 

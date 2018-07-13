@@ -19,4 +19,18 @@ public interface ISubjectService {
      * @return
      */
     List<Subject> listAllSubject();
+
+    /**
+     * 通过chapter查找学科信息
+     * @param subjectId
+     * @return
+     */
+    Subject showSubjectByChapter(Integer subjectId);
+
+    /**
+     * 通过choice茶渣章节信息
+     * @param chapterId
+     * @return
+     */
+    Chapter showChapterByChoice(Integer chapterId);
 }

@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.List;
+
 public class QuestionServiceTest {
 
     private IQuestionService questionService;
@@ -39,5 +41,14 @@ public class QuestionServiceTest {
         choice.setUserId(1);
         choice.setChapterId(1);
         questionService.addChoice(choice);
+    }
+
+    @Test
+    public void testSelectChoiceUnderChapterId() {
+        int[] array = {1,3};
+        List<Choice> choices = questionService.listChoiceByChapterId(array);
+        for(Choice choice : choices){
+            System.out.println(choice);
+        }
     }
 }

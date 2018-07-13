@@ -12,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service("libraryService")
 public class LibraryServiceImpl implements ILibraryService {
@@ -66,4 +68,12 @@ public class LibraryServiceImpl implements ILibraryService {
         return library;
     }
 
+    @Override
+    public Library selectLibraryByUserAndSubject(Integer userId, Integer subjectId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", userId);
+        map.put("subjectId", subjectId);
+        Library library = libraryDao.selectLibraryByUserAndSubject(map);
+        return library;
+    }
 }

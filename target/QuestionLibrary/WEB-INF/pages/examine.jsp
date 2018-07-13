@@ -9,14 +9,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="layui/layui.css" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="bootstrap-icheck/square/green.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
-    <script src="jquery/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="bootstrap-icheck/js/icheck.min.js"></script>
-    <script src="layui/layui.js"></script>
+    <link href="${pageContext.request.contextPath}/layui/css/layui.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/bootstrap-icheck/square/green.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/custom.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/bootstrap-icheck/js/icheck.min.js"></script>
+    <script src="${pageContext.request.contextPath}/layui/layui.js"></script>
     <title>试卷练习</title>
 </head>
 <body>

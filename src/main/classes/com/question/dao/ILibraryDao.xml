@@ -17,5 +17,8 @@
         select * from library where userId = #{id}
     </select>
 
-
+    <!--通过用户和学科查找试题库信息-->
+    <select id="selectLibraryByUserAndSubject" resultType="Library">
+        select * from library where userId = #{userId} and subjectId = #{subjectId}
+    </select>
 </mapper>

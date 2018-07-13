@@ -7,6 +7,10 @@ import java.util.List;
 public interface IPaperService {
     List<Paper> ListUserPaper(User user);
 
+    /**
+     * 添加一张试卷记录
+     * @param paper
+     */
     void addPaper(Paper paper);
 
     /**
@@ -44,4 +48,23 @@ public interface IPaperService {
      * @return
      */
     ShorterQuestion showShorterQuestion(int id);
+
+    /**
+     * 查询个人的选择题的错题id集
+     * @param id
+     * @return
+     */
+    List<Integer> listFailChoiceUnderUser(Integer id);
+
+    /**
+     * 查询个人的判断题的错题id集
+     * @param id
+     * @return
+     */
+    List<Integer> listFailJudgementUnderUser(Integer id);
+
+    /**
+     * 查询个人的简答题的错题id集
+     */
+    List<Integer> listFailShorterUnderUser(Integer id);
 }

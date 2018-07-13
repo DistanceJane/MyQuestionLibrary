@@ -94,7 +94,8 @@
 
     <!--录入一道简答题-->
     <insert id="insertShorter">
-        insert into Shorter(title, answer, level) values (#{title}, #{answer}, #{level})
+        insert into Shorter(title, answer, level, chapterId, userId)
+        values (#{title}, #{answer}, #{level}, #{chapterId}, #{userId})
     </insert>
 
     <!--根据删除一道简答题-->
@@ -122,4 +123,60 @@
         select * from shorter where title like '%' #{title} '%'
     </select>
 
+    <!--根据章节号数组来获取其下对应的试题集-->
+    <select id="listChoiceByChapterId" resultType="Choice">
+        select * from choice
+        <if test="array.length > 0">
+            where chapterId in
+            <foreach collection="array" item="chapterId" open="(" close=")" separator=",">
+                #{chapterId}
+            </foreach>
+        </if>
+    </select>
+
+    <!--根据章节号数组获取其下的判断题试题集-->
+    <select id="listJudgementByChapterId" resultType="Judgement">
+        select * from judgement
+        <if test="array.length > 0">
+            where chapterId in
+            <foreach collection="array" item="chapterId" open="(" close=")" separator=",">
+                #{chapterId}
+            </foreach>
+        </if>
+    </select>
+
+    <!--根据章节号数组获取其下的简答题试题集-->
+    <select id="listShorterBuChapterId" resultType="Shorter">
+        select * from shorter
+        <if test="array.length > 0">
+            where chapterId in
+            <foreach collection="array" item="chapterId" open="(" close=")" separator=",">
+                #{chapterId}
+            </foreach>
+        </if>
+    </select>
+
+    <!--根据试题难度和章节号数组获取其下的选择题题id集-->
+    <select id="fetchChoiceIdListByChapterAndLevel" resultType="int">
+        select id from choice where level = #{level} and chapterId in
+        <foreach collection="chapterId" item="chapterId" open="(" close=")" separator=",">
+            #{chapterId}
+        </foreach>
+    </select>
+
+    <!--根据章节和题目难度获取判断题的id集-->
+    <select id="fetchJudgementIdListByChapterAndLevel" resultType="int">
+        select id from judgement where level = #{level} and chapterId in
+        <foreach collection="chapterId" item="chapterId" open="(" close=")" separator=",">
+            #{chapterId}
+        </foreach>
+    </select>
+
+    <!--根据章节和题目难度获取简答题的id集-->
+    <select id="fetchShorterIdListByChapterAndLevel" resultType="int">
+        select id from shorter where level = #{level} and chapterId in
+        <foreach collection="chapterId" item="chapterId" open="(" close=")" separator=",">
+            #{chapterId}
+        </foreach>
+    </select>
 </mapper>

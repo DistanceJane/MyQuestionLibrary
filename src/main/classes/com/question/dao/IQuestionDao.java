@@ -3,6 +3,7 @@ package com.question.dao;
 import com.question.beans.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IQuestionDao {
 
@@ -156,4 +157,46 @@ public interface IQuestionDao {
      * @return
      */
     List<Shorter> listShorterByTitle(String title);
+
+    /**
+     * 根据章节号数组来获取其下的选择题试题集
+     * @param chapterId
+     * @return
+     */
+    List<Choice> listChoiceByChapterId(int[] chapterId);
+
+    /**
+     * 根据章节号数组获取其下的判断题试题集
+     * @param chapterId
+     * @return
+     */
+    List<Judgement> listJudgementByChapterId(int[] chapterId);
+
+    /**
+     * 根据章节号数组获取其下的简答题试题集
+     * @param chapterId
+     * @return
+     */
+    List<Shorter> listShorterBuChapterId(int[] chapterId);
+
+    /**
+     * 根据章节和题目难度获取选择题的id集
+     * @param map
+     * @return
+     */
+    List<Integer> fetchChoiceIdListByChapterAndLevel(Map<String,Object> map);
+
+    /**
+     * 根据章节和题目难度获取判断题的id集
+     * @param map
+     * @return
+     */
+    List<Integer> fetchJudgementIdListByChapterAndLevel(Map<String,Object> map);
+
+    /**
+     * 根据章节和题目难度获取简答题的id集
+     * @param map
+     * @return
+     */
+    List<Integer> fetchShorterIdListByChapterAndLevel(Map<String,Object> map);
 }

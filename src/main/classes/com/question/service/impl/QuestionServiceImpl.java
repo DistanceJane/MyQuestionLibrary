@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service("questionService")
 public class QuestionServiceImpl implements IQuestionService {
@@ -84,17 +87,135 @@ public class QuestionServiceImpl implements IQuestionService {
 
     @Override
     public void addJudgement(Judgement judgement) {
-
+        questionDao.insertJudgement(judgement);
+        System.out.println("aaaaaaaaaaaaaaaaaa");
     }
 
     @Override
     public void addShorter(Shorter shorter) {
-
+        questionDao.insertShorter(shorter);
     }
 
     @Override
     @Transactional
     public void addOptionForChoice(ChoiceOption choiceOption) {
         questionDao.insertChoiceOption(choiceOption);
+    }
+
+    @Override
+    @Transactional
+    public List<Choice> listChoiceByChapterId(int[] chapterId) {
+        List<Choice> choices = questionDao.listChoiceByChapterId(chapterId);
+        return choices;
+    }
+
+    @Override
+    @Transactional
+    public List<Integer> listChoiceByChapterIdAndLevel(int level, int[] chapterId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("level", level);
+        map.put("chapterId", chapterId);
+        List<Integer> idList = questionDao.fetchChoiceIdListByChapterAndLevel(map);
+        return idList;
+    }
+
+    @Override
+    @Transactional
+    public List<Integer> listJudgementByChapterAndLevel(int level, int[] chapterId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("level", level);
+        map.put("chapterId", chapterId);
+        List<Integer> idList = questionDao.fetchJudgementIdListByChapterAndLevel(map);
+        return idList;
+    }
+
+    @Override
+    @Transactional
+    public List<Integer> listShorterByChapterIdAndLevel(int level, int[] chapterId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("level", level);
+        map.put("chapterId", chapterId);
+        List<Integer> idList = questionDao.fetchShorterIdListByChapterAndLevel(map);
+        return idList;
+    }
+
+    @Override
+    public List<Integer> filterChoiceIdListByChapter(int[] chapterId, List<Integer> failChoiceIdList) {
+        List<Integer> idList = new ArrayList<>();
+        List<Integer> chapterIdList = new ArrayList<>();
+        for (int i : chapterId){
+            chapterIdList.add(i);
+        }
+        for(int id : failChoiceIdList){
+            Choice choice = questionDao.selectChoiceById(id);
+            if(chapterIdList.contains(choice.getChapterId())){
+                idList.add(choice.getChapterId());
+            }
+        }
+        return idList;
+    }
+
+    @Override
+    public List<Integer> filterJudgementIdListByChapter(int[] chapterId, List<Integer> failJudgementIdList) {
+        List<Integer> idList = new ArrayList<>();
+        List<Integer> chapterIdList = new ArrayList<>();
+        for(int i : chapterId){
+            chapterIdList.add(i);
+        }
+
+        for(int id : failJudgementIdList){
+            Judgement judgement = questionDao.selectJudgementById(id);
+            if(chapterIdList.contains(judgement.getChapterId())){
+                idList.add(judgement.getChapterId());
+            }
+        }
+        return idList;
+    }
+
+    @Override
+    public List<Integer> filterShorterIdListByChapter(int[] chapterId, List<Integer> failShorterIdList) {
+        List<Integer> idList = new ArrayList<>();
+        List<Integer> chapterIdList = new ArrayList<>();
+        for(int i : chapterId){
+            chapterIdList.add(i);
+        }
+
+        for(int id : failShorterIdList){
+            Shorter shorter = questionDao.selectShorterById(id);
+            if (chapterIdList.contains(shorter.getChapterId())){
+                idList.add(shorter.getChapterId());
+            }
+        }
+        return idList;
+    }
+
+    @Override
+    public List<Choice> listChoiceByIdList(List<Integer> baseChoiceIdList) {
+        List<Choice> choices = new ArrayList<>();
+        for(int id : baseChoiceIdList){
+            Choice choice = questionDao.selectChoiceById(id);
+            choices.add(choice);
+        }
+        return choices;
+    }
+
+    @Override
+    public List<Judgement> listJudgementByIdList(List<Integer> baseJudgementIdList) {
+        List<Judgement> judgements = new ArrayList<>();
+        for(int id : baseJudgementIdList){
+            Judgement judgement = questionDao.selectJudgementById(id);
+            judgements.add(judgement);
+        }
+        return judgements;
+    }
+
+    @Override
+    public List<Shorter> listShorterByIdList(List<Integer> baseShorterIdList) {
+        List<Shorter> shorters = new ArrayList<>();
+        for(int id : baseShorterIdList){
+            Shorter shorter = questionDao.selectShorterById(id);
+            shorters.add(shorter);
+        }
+        return shorters;
     }
 }

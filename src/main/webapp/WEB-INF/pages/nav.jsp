@@ -15,7 +15,14 @@
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/home.do">首页</a></li>
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/practice.do">题库</a></li>
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/question/upload.do">笔记</a></li>
-            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/question/upload.do">上传试题</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">上传试题</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="${pageContext.request.contextPath}/question/uploadChoice.do">选择题</a></dd>
+                    <dd><a href="${pageContext.request.contextPath}/question/uploadJudgement.do">判断题</a></dd>
+                    <dd><a href="${pageContext.request.contextPath}/question/uploadShorter.do">简答题</a></dd>
+                </dl>
+            </li>
             <li class="layui-nav-item">
                 <a href="javascript:;">后台管理</a>
                 <dl class="layui-nav-child">

@@ -1,5 +1,7 @@
 package com.question.test;
 
+import com.question.beans.Choice;
+import com.question.beans.Fail;
 import com.question.beans.Paper;
 import com.question.beans.User;
 import com.question.service.IPaperService;
@@ -41,4 +43,5 @@ public class PaperServiceTest {
             System.out.println(paper.getCreateTime());
         }
     }
+
 }

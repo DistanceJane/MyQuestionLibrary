@@ -3,6 +3,7 @@ package com.question.dao;
 import com.question.beans.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IPaperDao {
 
@@ -125,7 +126,7 @@ public interface IPaperDao {
      * @param id
      * @return
      */
-    Fail selectFailBuId(int id);
+    Fail selectFailById(int id);
 
     /**
      * 获取某一用户的所有错题集
@@ -133,4 +134,12 @@ public interface IPaperDao {
      * @return
      */
     List<Fail> listFailUnderUser(User user);
+
+
+    /**
+     * 获取用户的错题集某一类型试题的id集
+     * @param map
+     * @return
+     */
+    List<Integer> fetchQuestionIdListByUser(Map<String,Object> map);
 }
