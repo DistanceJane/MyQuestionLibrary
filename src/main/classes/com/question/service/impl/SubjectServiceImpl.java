@@ -45,4 +45,10 @@ public class SubjectServiceImpl implements ISubjectService {
         Chapter chapter = subjectDao.selectChapterById(chapterId);
         return chapter;
     }
+
+    @Override
+    public Subject showSubjectDetail(int subjectId) {
+        Subject subject = subjectDao.selectSubjectById(subjectId);
+        return subject;
+    }
 }

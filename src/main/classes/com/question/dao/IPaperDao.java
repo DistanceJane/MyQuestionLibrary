@@ -61,10 +61,10 @@ public interface IPaperDao {
 
     /**
      * 列举某张试卷上的所有选择题
-     * @param paper
+     * @param paperId
      * @return
      */
-    List<ChoiceQuestion> listChoiceQuestionUnderPaper(Paper paper);
+    List<ChoiceQuestion> listChoiceQuestionUnderPaper(int paperId);
 
     /**
      * 新增一道试卷上的判断题
@@ -81,10 +81,10 @@ public interface IPaperDao {
 
     /**
      * 获取试卷上的所有判断题
-     * @param paper
+     * @param paperId
      * @return
      */
-    List<JudgementQuestion> listJudgementQuestionUnderPaper(Paper paper);
+    List<JudgementQuestion> listJudgementQuestionUnderPaper(int paperId);
 
 
     /**
@@ -103,10 +103,10 @@ public interface IPaperDao {
 
     /**
      * 获取某一试卷上的所有简答题
-     * @param paper
+     * @param paperId
      * @return
      */
-    List<ShorterQuestion> listShorterQuestionUnderPaper(Paper paper);
+    List<ShorterQuestion> listShorterQuestionUnderPaper(int paperId);
 
 
     /**
@@ -142,4 +142,24 @@ public interface IPaperDao {
      * @return
      */
     List<Integer> fetchQuestionIdListByUser(Map<String,Object> map);
+
+    /**
+     * 修改选择题的答案
+     * @param choiceQuestion
+     */
+    void updateChoiceQuestionAnswer(ChoiceQuestion choiceQuestion);
+
+    /**
+     * 修改填空题的答案
+     * @param judgementQuestion
+     */
+    void updateJudgementQuestionAnswer(JudgementQuestion judgementQuestion);
+
+    /**
+     * 修改简答题的答案
+     * @param shorterQuestion
+     */
+    void updateShorterQuestionAnswer(ShorterQuestion shorterQuestion);
+
+
 }

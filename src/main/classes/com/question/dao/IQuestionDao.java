@@ -74,10 +74,10 @@ public interface IQuestionDao {
 
     /**
      * 获取某个试题下的所有选项
-     * @param choice
+     * @param choiceId
      * @return
      */
-    List<ChoiceOption> listChoiceOptionUnderChoice(Choice choice);
+    List<ChoiceOption> listChoiceOptionUnderChoice(int choiceId);
 
     /**
      * 录入一道判断题

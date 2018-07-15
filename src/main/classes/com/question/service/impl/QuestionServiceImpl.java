@@ -49,8 +49,8 @@ public class QuestionServiceImpl implements IQuestionService {
     @Transactional
     public Choice showChoiceDetail(int id) {
         Choice choice = questionDao.selectChoiceById(id);
-        // 获取该选择题的试题列表
-        List<ChoiceOption> options = questionDao.listChoiceOptionUnderChoice(choice);
+        // 获取该选择题的选项列表
+        List<ChoiceOption> options = questionDao.listChoiceOptionUnderChoice(id);
         choice.setOptions(options);
         // 获取试题的所属章节
         Chapter chapter = subjectDao.selectChapterById(choice.getChapterId());
@@ -217,5 +217,12 @@ public class QuestionServiceImpl implements IQuestionService {
             shorters.add(shorter);
         }
         return shorters;
+    }
+
+    @Override
+    @Transactional
+    public ChoiceOption showOptionById(int optionId) {
+        ChoiceOption option = questionDao.selectChoiceOptionById(optionId);
+        return option;
     }
 }

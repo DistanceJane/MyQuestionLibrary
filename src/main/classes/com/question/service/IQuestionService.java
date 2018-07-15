@@ -138,4 +138,11 @@ public interface IQuestionService {
      * @return
      */
     List<Shorter> listShorterByIdList(List<Integer> baseShorterIdList);
+
+    /**
+     * 根据id获取选择题选项的内容。
+     * @param optionId
+     * @return
+     */
+    ChoiceOption showOptionById(int optionId);
 }

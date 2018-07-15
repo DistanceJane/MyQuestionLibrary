@@ -6,7 +6,7 @@ package com.question.beans;
 public class ShorterQuestion {
     private Integer id;
     // 所对应的题库中的简答题id
-    private Integer shortId;
+    private Integer shorterId;
     // 所对应的题库中的简答题
     private Shorter shorter;
     // 记录用户的答案
@@ -29,12 +29,12 @@ public class ShorterQuestion {
         this.id = id;
     }
 
-    public Integer getShortId() {
-        return shortId;
+    public Integer getShorterId() {
+        return shorterId;
     }
 
-    public void setShortId(Integer shortId) {
-        this.shortId = shortId;
+    public void setShorterId(Integer shorterId) {
+        this.shorterId = shorterId;
     }
 
     public Shorter getShorter() {
@@ -82,7 +82,7 @@ public class ShorterQuestion {
     public String toString() {
         return "ShorterQuestion{" +
                 "id=" + id +
-                ", shortId=" + shortId +
+                ", shorterId=" + shorterId +
                 ", myAnswer='" + myAnswer + '\'' +
                 ", paperId=" + paperId +
                 ", score=" + score +

@@ -413,7 +413,8 @@ body{
 
 .custom-cube:hover,.custom-cube:active{
     border: 1px solid #00BB9B;
-    color: #00BB9B;
+    color: #ffffff;
+    background-color: #00BB9B;
 }
 
 .custom-upload-label{
@@ -476,7 +477,6 @@ body{
 .custom-note-hot-datetime{
     font-size: 10px;
     color: #040404;
-    color: #f77a57;
 }
 
 .custom-note-submit{
@@ -635,6 +635,24 @@ body{
 
 .custom-exercise-rate{
     margin-left: 20px;
+}
+
+.custom-cube-green{
+    display: block;
+    background-color: #1abc9c !important;
+}
+
+.custom-cube-red{
+    display: block;
+    background-color: #ff431e !important;
+}
+
+.custom-cube-green:hover, .custom-cube-green:focus, .custom-cube-green:active {
+    height:45px;
+}
+
+.custom-cube-red:hover, .custom-cube-red:focus, .custom-cube-red:active {
+    height:45px;
 }
 
 

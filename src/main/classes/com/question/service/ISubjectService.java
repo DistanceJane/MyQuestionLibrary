@@ -28,9 +28,16 @@ public interface ISubjectService {
     Subject showSubjectByChapter(Integer subjectId);
 
     /**
-     * 通过choice茶渣章节信息
+     * 通过choice查询章节信息
      * @param chapterId
      * @return
      */
     Chapter showChapterByChoice(Integer chapterId);
+
+    /**
+     * 查询id学科信息
+     * @param subjectId
+     * @return
+     */
+    Subject showSubjectDetail(int subjectId);
 }

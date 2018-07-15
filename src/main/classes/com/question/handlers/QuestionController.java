@@ -48,8 +48,6 @@ public class QuestionController {
     @RequestMapping("/{type}/{id}/detail.do")
     public ModelAndView showDetail(@PathVariable("type") int type, @PathVariable("id") int id){
         ModelAndView mv = new ModelAndView("/WEB-INF/pages/failDetail.jsp");
-        System.out.println(type);
-        System.out.println(id);
         if(type == 1){
             Question question = questionService.showChoiceDetail(id);
             List<ChoiceOption> options = ((Choice) question).getOptions();

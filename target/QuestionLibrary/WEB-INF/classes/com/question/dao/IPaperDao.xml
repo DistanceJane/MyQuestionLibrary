@@ -13,6 +13,17 @@
         </selectKey>
     </insert>
 
+
+    <!--根据ID查询试卷信息-->
+    <select id="selectPaperById" resultType="Paper">
+        select * from paper where id = #{id}
+    </select>
+
+    <!--修改试卷信息-->
+    <update id="updatePaper">
+        update paper set state = 1, score = #{score} where id = #{id}
+    </update>
+
     <!--获取用户的所有试卷-->
     <select id="listPaperUnderUser" resultType="Paper">
         select * from paper where userId = #{id}
@@ -21,8 +32,11 @@
     
     <!--新增一道试卷上的选择题-->
     <insert id="insertChoiceQuestion">
-        insert into choiceQuestion(paperId, choiceId, myAnswer, score, mutiple)
-        values (#{paper.id}, #{choice.id}, #{myAnswer}, #{score}, #{mutiple})
+        insert into choiceQuestion(paperId, choiceId, myAnswer, score)
+        values (#{paperId}, #{choiceId}, #{myAnswer}, #{score})
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select @@identity
+        </selectKey>
     </insert>
 
     <!--根据id查询试卷上的选择题-->
@@ -38,7 +52,10 @@
     <!--新增一道试卷上的判断题-->
     <insert id="insertJudgementQuestion">
         insert into judgementQuestion(paperId, judgementId, myAnswer, score)
-        values (#{paper.id}, #{judgement.id}, #{myAnswer}, #{score})
+        values (#{paperId}, #{judgementId}, #{myAnswer}, #{score})
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select @@identity
+        </selectKey>
     </insert>
 
     <!--根据id查询试卷上的判断题-->
@@ -51,15 +68,19 @@
         select * from judgementQuestion where paperId = #{id}
     </select>
 
+
     <!--新增一道试卷上的简答题-->
     <insert id="insertShorterQuestion">
         insert into shorterQuestion(paperId, shorterId, myAnswer, score)
-        values (#{paper.id}, #{shorter.id}, #{myAnswer}, #{score})
+        values (#{paperId}, #{shorterId}, #{myAnswer}, #{score})
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select @@identity
+        </selectKey>
     </insert>
 
     <!--根据id查询试卷上的简答题-->
-    <select id="selectShorterQuestionById">
-        select * shorterQuestion where id = #{id}
+    <select id="selectShorterQuestionById" resultType="ShorterQuestion">
+        select * from shorterQuestion where id = #{id}
     </select>
 
     <!--获取某一试卷上的所有简答题-->
@@ -87,17 +108,23 @@
         select * from fail where userId = #{id}
     </select>
 
-    <!--查询用户的某一类型下的所有错题-->
-    <!--<select id="listFailUnderUserByType" resultType="Fail">-->
-        <!--select * from fail where userId = #{userId} and questionId in-->
-            <!--<foreach collection="questionId" item="#{cid}" open="(" close=")" separator=",">-->
-                <!--#{cid}-->
-            <!--</foreach>-->
-    <!--</select>-->
-
     <!--获取用户的错题集某一类型试题的id集-->
     <select id="fetchQuestionIdListByUser" resultType="int">
         select id from fail where typeId = #{typeId} and userId = #{userId}
     </select>
 
+    <!--修改选择题的答案-->
+    <update id="updateChoiceQuestionAnswer">
+        update choiceQuestion set myAnswer = #{myAnswer} where id = #{id}
+    </update>
+
+    <!--修改填空题的答案-->
+    <update id="updateJudgementQuestionAnswer">
+        update judgementQuestion set myAnswer = #{myAnswer} where id = #{id}
+    </update>
+
+    <!--修改简答题的答案-->
+    <update id="updateShorterQuestionAnswer">
+        update shorterQuestion set myAnswer = #{myAnswer} where id = #{id}
+    </update>
 </mapper>

@@ -59,7 +59,7 @@
 
     <!--获取某个试题下的所有选项-->
     <select id="listChoiceOptionUnderChoice" resultType="ChoiceOption">
-        select * from choiceOption where choiceId = #{id}
+        select * from choiceOption where choiceId = #{choiceid}
     </select>
 
     <!--录入一道判断题-->

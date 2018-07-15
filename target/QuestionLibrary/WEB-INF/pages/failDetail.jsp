@@ -26,69 +26,71 @@
 <div class="custom-container">
     <div class="layui-row">
         <div class="layui-col-md9">
-            <div class="custom-panel">
-                <div class="layui-card">
-                    <div class="layui-card-header">
-                        <img src="${pageContext.request.contextPath}/images/face.png" class="custom-question-type-img">
-                        <span class="custom-question-type"><strong>[单选题]</strong></span>
-                    </div>
-                    <div class="layui-card-body">
-                        <p>${question.title}</p>
-                        <c:forEach items="${question.options}" var="option">
-                            <p>${option.header}、${option.content}</p>
-                        </c:forEach>
-                    </div>
-                    <div class="layui-card-header">
-                        <div class="layui-row">
-                            <div class="layui-col-md4">
-                                正确答案
-                                <c:forEach items="${question.options}" var="opt">
-                                    <c:if test="${opt.correct == 1}">
-                                        ${opt.header}、
-                                    </c:if>
-                                </c:forEach>
-                            </div>
-                            <div class="layui-col-md4">
-                                你的答案${userAnswer}
-                            </div>
-                            <div class="layui-col-md4">
-                                <button class="layui-btn">添加笔记</button>
+            <div>
+                <div class="custom-panel">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            <img src="${pageContext.request.contextPath}/images/face.png" class="custom-question-type-img">
+                            <span class="custom-question-type"><strong>[单选题]</strong></span>
+                        </div>
+                        <div class="layui-card-body">
+                            <p>${question.title}</p>
+                            <c:forEach items="${question.options}" var="option">
+                                <p>${option.header}、${option.content}</p>
+                            </c:forEach>
+                        </div>
+                        <div class="layui-card-header">
+                            <div class="layui-row">
+                                <div class="layui-col-md4">
+                                    正确答案
+                                    <c:forEach items="${question.options}" var="opt">
+                                        <c:if test="${opt.correct == 1}">
+                                            ${opt.header}、
+                                        </c:if>
+                                    </c:forEach>
+                                </div>
+                                <div class="layui-col-md4">
+                                    你的答案${userAnswer}
+                                </div>
+                                <div class="layui-col-md4">
+                                    <button class="layui-btn">添加笔记</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="custom-panel">
-                <div class="layui-card">
-                    <div class="layui-card-header">
-                        <img src="${pageContext.request.contextPath}/images/question_notes.png" class="custom-question-type-img">
-                        <span class="custom-question-type"><strong>3条笔记</strong></span>
-                    </div>
-                    <div class="layui-card-body">
-                        <div class="custom-speaker-panel">
-                            <c:forEach items="${notes}" var="note">
-                                <div class="layui-row">
-                                    <div class="custom-speaker">
-                                        <img class="custom-speaker-img" src="${pageContext.request.contextPath}/images/you.jpg">
-                                        <h6 class="custom-text-center">${note.user.username}</h6>
+                <div class="custom-panel">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            <img src="${pageContext.request.contextPath}/images/question_notes.png" class="custom-question-type-img">
+                            <span class="custom-question-type"><strong>3条笔记</strong></span>
+                        </div>
+                        <div class="layui-card-body">
+                            <div class="custom-speaker-panel">
+                                <c:forEach items="${notes}" var="note">
+                                    <div class="layui-row">
+                                        <div class="custom-speaker">
+                                            <img class="custom-speaker-img" src="${pageContext.request.contextPath}/images/you.jpg">
+                                            <h6 class="custom-text-center">${note.user.username}</h6>
+                                        </div>
+                                        <div class="custom-speaker-text">
+                                            <img src="${pageContext.request.contextPath}/images/like.png" class="custom-speaker-like">
+                                            <span>(${note.like})</span>
+                                            <p>
+                                                    ${note.content}
+                                            </p>
+                                            <span class="custom-note-datetime"><strong>发布于${note.time}</strong></span>
+                                        </div>
+
                                     </div>
-                                    <div class="custom-speaker-text">
-                                        <img src="${pageContext.request.contextPath}/images/like.png" class="custom-speaker-like">
-                                        <span>(${note.like})</span>
-                                        <p>
-                                            ${note.content}
-                                        </p>
-                                        <span class="custom-note-datetime"><strong>发布于${note.time}</strong></span>
+                                </c:forEach>
+                                <div class="custom-horizon-box">
+                                    <div class="custom-horizon-center">
+                                        <div id="page"></div>
                                     </div>
 
                                 </div>
-                            </c:forEach>
-                            <div class="custom-horizon-box">
-                                <div class="custom-horizon-center">
-                                    <div id="page"></div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
