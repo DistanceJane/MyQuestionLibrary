@@ -3,6 +3,8 @@ package com.question.beans;
 public class Question {
 
     private Integer id;
+
+    private Integer questionId;
     // 题目
     private String title;
     // 图片
@@ -17,6 +19,7 @@ public class Question {
     private User user;
     // 试题类型
     protected int typeId;
+    // 答案
 
     public Integer getId() {
         return id;
@@ -82,6 +85,14 @@ public class Question {
         this.typeId = typeId;
     }
 
+    public Integer getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(Integer questionId) {
+        this.questionId = questionId;
+    }
+
     @Override
     public String toString() {
         return "Question{" +
@@ -90,6 +101,7 @@ public class Question {
                 ", picture='" + picture + '\'' +
                 ", level=" + level +
                 ", typeId=" + typeId +
+                ", questionId" + questionId +
                 '}';
     }
 }

@@ -31,21 +31,23 @@
                     <div class="layui-input-inline">
                         <select name="subjectId" lay-verify="required">
                             <option value=""></option>
-                            <option value="1">计算机网络</option>
-                            <option value="2">Java语言基础设计</option>
+                            <option value="1">Java语言程序设计</option>
+                            <option value="2">计算机网络</option>
                             <option value="3">设计模式</option>
                             <option value="4">操作系统</option>
+                            <option value="4">数据结构</option>
                         </select>
                     </div>
                     <label class="layui-form-label">章节</label>
                     <div class="layui-input-inline">
                         <select name="chapterId" lay-verify="required">
                             <option value=""></option>
-                            <option value="1">字符串</option>
+                            <option value="1">变量</option>
                             <option value="2">数组</option>
                             <option value="3">方法</option>
                             <option value="4">集合</option>
                             <option value="5">泛型</option>
+                            <option value="5">多线程</option>
                         </select>
                     </div>
 

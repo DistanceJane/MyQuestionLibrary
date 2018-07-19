@@ -26,70 +26,134 @@
 <div class="custom-container">
     <div class="layui-row">
         <div class="layui-col-md9">
-            <div>
-                <div class="custom-panel">
-                    <div class="layui-card">
-                        <div class="layui-card-header">
-                            <img src="${pageContext.request.contextPath}/images/face.png" class="custom-question-type-img">
-                            <span class="custom-question-type"><strong>[单选题]</strong></span>
-                        </div>
-                        <div class="layui-card-body">
-                            <p>${question.title}</p>
-                            <c:forEach items="${question.options}" var="option">
-                                <p>${option.header}、${option.content}</p>
-                            </c:forEach>
-                        </div>
-                        <div class="layui-card-header">
-                            <div class="layui-row">
-                                <div class="layui-col-md4">
-                                    正确答案
-                                    <c:forEach items="${question.options}" var="opt">
-                                        <c:if test="${opt.correct == 1}">
-                                            ${opt.header}、
-                                        </c:if>
-                                    </c:forEach>
+            <div class="custom-panel">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <img src="${pageContext.request.contextPath}/images/face.png" class="custom-question-type-img">
+                        <span class="custom-question-type"><strong>[
+                <c:choose>
+                    <c:when test="${type == 1}">
+                        <c:choose>
+                            <c:when test="${choice.multiple == 1}">
+                                多选题
+                            </c:when>
+                            <c:otherwise>
+                                单选题
+                            </c:otherwise>
+                        </c:choose>
+                    </c:when>
+                    <c:when test="${type == 2}">
+                        判断题
+                    </c:when>
+                    <c:when test="${type == 3}">
+                        简答题
+                    </c:when>
+                </c:choose>
+            }</strong></span>
+                    </div>
+                    <%--==================================================================================--%>
+                    <div class="layui-card-body">
+                        <c:choose>
+                            <%--选择题--%>
+                            <c:when test="${type == 1}">
+                                <p>${choice.title}</p>
+                                <c:forEach items="${choice.options}" var="option">
+                                    <p>${option.header}、${option.content}</p>
+                                </c:forEach>
+                                <div class="layui-card-header">
+                                    <div class="layui-row">
+                                        <div class="layui-col-md4">
+                                            正确答案
+                                            <c:forEach items="${choice.options}" var="opt">
+                                                <c:if test="${opt.correct == 1}">
+                                                    ${opt.header}、
+                                                </c:if>
+                                            </c:forEach>
+                                        </div>
+                                        <div class="layui-col-md4">
+                                            你的答案${userAnswer}
+                                        </div>
+                                        <div class="layui-col-md4">
+                                            <button class="layui-btn">添加笔记</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="layui-col-md4">
-                                    你的答案${userAnswer}
+                            </c:when>
+                            <%--选择题--%>
+
+                            <%--判断题--%>
+                            <c:when test="${type == 2}">
+                                <p>${judgement.title}</p>
+                                <div class="layui-card-header">
+                                    <div class="layui-row">
+                                        <div class="layui-col-md4">
+                                            正确答案
+                                            <c:choose>
+                                                <c:when test="${judgement.answer == 1}">[正确]</c:when>
+                                                <c:otherwise>[错误]</c:otherwise>
+                                            </c:choose>
+                                        </div>
+                                        <div class="layui-col-md4">
+                                            你的答案
+                                            <c:choose>
+                                                <c:when test="${userAnswer == 1}">
+                                                    [正确]
+                                                </c:when>
+                                                <c:otherwise>[错误]</c:otherwise>
+                                            </c:choose>
+                                        </div>
+                                        <div class="layui-col-md4">
+                                            <button class="layui-btn">添加笔记</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="layui-col-md4">
-                                    <button class="layui-btn">添加笔记</button>
+                            </c:when>
+                            <%--判断题--%>
+
+                            <%--简答题--%>
+                            <c:when test="${type == 3}">
+                                <p>${shorter.title}</p>
+                                <div class="layui-row">
+                                    <p>[参考答案]&nbsp;&nbsp;&nbsp;&nbsp;
+                                            ${shorter.answer}</p>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="layui-row">
+                                    <p>[你的答案]&nbsp;&nbsp;&nbsp;&nbsp;
+                                            ${userAnswer}
+                                    </p>
+                                </div>
+                            </c:when>
+                            <%--简答题--%>
+                        </c:choose>
                     </div>
                 </div>
+            </div>
 
-                <div class="custom-panel">
-                    <div class="layui-card">
-                        <div class="layui-card-header">
-                            <img src="${pageContext.request.contextPath}/images/question_notes.png" class="custom-question-type-img">
-                            <span class="custom-question-type"><strong>3条笔记</strong></span>
-                        </div>
-                        <div class="layui-card-body">
-                            <div class="custom-speaker-panel">
-                                <c:forEach items="${notes}" var="note">
-                                    <div class="layui-row">
-                                        <div class="custom-speaker">
-                                            <img class="custom-speaker-img" src="${pageContext.request.contextPath}/images/you.jpg">
-                                            <h6 class="custom-text-center">${note.user.username}</h6>
-                                        </div>
-                                        <div class="custom-speaker-text">
-                                            <img src="${pageContext.request.contextPath}/images/like.png" class="custom-speaker-like">
-                                            <span>(${note.like})</span>
-                                            <p>
-                                                    ${note.content}
-                                            </p>
-                                            <span class="custom-note-datetime"><strong>发布于${note.time}</strong></span>
-                                        </div>
-
+            <div class="custom-panel">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <img src="${pageContext.request.contextPath}/images/question_notes.png" class="custom-question-type-img">
+                        <span class="custom-question-type"><strong>${noteCount}条笔记</strong></span>
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="custom-speaker-panel">
+                            <c:forEach items="${notes}" var="note">
+                                <div class="layui-row">
+                                    <div class="custom-speaker">
+                                        <img class="custom-speaker-img" src="${pageContext.request.contextPath}/images/you.jpg">
+                                        <h6 class="custom-text-center">${note.user.username}</h6>
                                     </div>
-                                </c:forEach>
-                                <div class="custom-horizon-box">
-                                    <div class="custom-horizon-center">
-                                        <div id="page"></div>
+                                    <div class="custom-speaker-text">
+                                        <img src="${pageContext.request.contextPath}/images/like.png" class="custom-speaker-like">
+                                        <span>(${note.like})</span>
+                                        <p>${note.content}</p>
+                                        <span class="custom-note-datetime"><strong>发布于${note.time}</strong></span>
                                     </div>
-
+                                </div>
+                            </c:forEach>
+                            <div class="custom-horizon-box">
+                                <div class="custom-horizon-center">
+                                    <div id="page"></div>
                                 </div>
                             </div>
                         </div>
@@ -113,13 +177,39 @@
                     <div class="layui-card-body">
                         <div>
                             <span class="custom-upload-label">知识点：</span><span
-                                class="custom-home-username">${question.chapter.chapterName}</span>
+                                class="custom-home-username">
+                            ${chapterName}
+                        </span>
                         </div>
                         <div>
-                            <span class="custom-upload-label">上传者：</span><span class="custom-home-username">${question.user.username}</span>
+                            <span class="custom-upload-label">上传者：</span><span class="custom-home-username">
+                            <c:choose>
+                                <c:when test="${type == 1}">
+                                    ${choice.user.username}
+                                </c:when>
+                                <c:when test="${type == 2}">
+                                    ${judgement.user.username}
+                                </c:when>
+                                <c:otherwise>
+                                    ${shorter.user.username}
+                                </c:otherwise>
+                            </c:choose>
+                        </span>
                         </div>
                         <div>
-                            <span class="custom-upload-label">难度：</span><span class="custom-home-username">${question.level}</span>
+                            <span class="custom-upload-label">难度：</span><span class="custom-home-username">
+                            <c:choose>
+                                <c:when test="${type == 1}">
+                                    ${choice.level}
+                                </c:when>
+                                <c:when test="${type == 2}">
+                                    ${judgement.level}
+                                </c:when>
+                                <c:otherwise>
+                                    ${shorter.level}
+                                </c:otherwise>
+                            </c:choose>
+                            </span>
                         </div>
                     </div>
                 </div>

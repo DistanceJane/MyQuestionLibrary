@@ -69,11 +69,48 @@ public class LibraryServiceImpl implements ILibraryService {
     }
 
     @Override
+    @Transactional
     public Library selectLibraryByUserAndSubject(Integer userId, Integer subjectId) {
         Map<String, Object> map = new HashMap<>();
         map.put("userId", userId);
         map.put("subjectId", subjectId);
         Library library = libraryDao.selectLibraryByUserAndSubject(map);
+        return library;
+    }
+
+    @Override
+    @Transactional
+    public void addLibrary(Library library) {
+        libraryDao.insertLibrary(library);
+    }
+
+    @Override
+    @Transactional
+    public void deleteLibrary(int libraryId) {
+        libraryDao.deleteLibrary(libraryId);
+    }
+
+
+
+
+    @Override
+    public void updateLibraryPassQuantity(Integer libraryId) {
+        Library library = libraryDao.selectLibraryById(libraryId);
+        library.setPassQuantity(library.getPassQuantity() + 1);
+        libraryDao.updateLibrary(library);
+    }
+
+    @Override
+    public void updateLibraryDoneQuantity(Integer libraryId, int shorterNum) {
+        Library library = libraryDao.selectLibraryById(libraryId);
+        library.setDoneQuantity(library.getDoneQuantity() + shorterNum);
+        libraryDao.updateLibrary(library);
+    }
+
+    @Override
+    @Transactional
+    public Library selectLibraryById(Integer libraryId) {
+        Library library = libraryDao.selectLibraryById(libraryId);
         return library;
     }
 }

@@ -45,30 +45,35 @@ public class QuestionController {
      * 查看题目详情
      * @return
      */
-    @RequestMapping("/{type}/{id}/detail.do")
-    public ModelAndView showDetail(@PathVariable("type") int type, @PathVariable("id") int id){
+    @RequestMapping("/{type}/{id}/{questionId}/detail.do")
+    public ModelAndView showDetail(@PathVariable("type") int type, @PathVariable("id") int id, @PathVariable("questionId") int questionId){
         ModelAndView mv = new ModelAndView("/WEB-INF/pages/failDetail.jsp");
+        String chapterName = "";
         if(type == 1){
-            Question question = questionService.showChoiceDetail(id);
-            List<ChoiceOption> options = ((Choice) question).getOptions();
+            Choice choice = questionService.showChoiceDetail(id);
+            chapterName = choice.getChapter().getChapterName();
+            List<ChoiceOption> options = choice.getOptions();
             for(ChoiceOption option : options){
                 System.out.println("text"+option);
             }
-            mv.addObject("question", question);
+            mv.addObject("choice", choice);
+
             // 获取试卷上当时自己的答案
-            ChoiceQuestion choiceQuestion = paperService.showChoiceQuestion(id);
+            ChoiceQuestion choiceQuestion = paperService.showChoiceQuestion(questionId);
             mv.addObject("userAnswer", choiceQuestion.getMyAnswer());
         }else if(type == 2){
-           Question question = questionService.showJudgementDetail(id);
-           mv.addObject("question", question);
+           Judgement judgement = questionService.showJudgementDetail(id);
+            chapterName = judgement.getChapter().getChapterName();
+           mv.addObject("judgement", judgement);
             // 获取试卷上当时自己的答案
-            JudgementQuestion judgementQuestion = paperService.showJudgementQuestion(id);
+            JudgementQuestion judgementQuestion = paperService.showJudgementQuestion(questionId);
             mv.addObject("userAnswer", judgementQuestion.getMyAnswer());
         }else{
-           Question question = questionService.showShorterDetail(id);
-           mv.addObject("question", question);
+           Shorter shorter = questionService.showShorterDetail(id);
+            chapterName =shorter.getChapter().getChapterName();
+           mv.addObject("shorter", shorter);
             // 获取试卷上当时自己的答案
-            ShorterQuestion shorterQuestion = paperService.showShorterQuestion(id);
+            ShorterQuestion shorterQuestion = paperService.showShorterQuestion(questionId);
             mv.addObject("userAnswer", shorterQuestion.getMyAnswer());
         }
 
@@ -79,7 +84,8 @@ public class QuestionController {
         List<Note> notes = noteService.listNoteUnderQuestion(note);
         mv.addObject("notes",notes);
         mv.addObject("noteCount",notes.size());
-
+        mv.addObject("type", type);
+        mv.addObject("chapterName",chapterName);
         return mv;
     }
 
@@ -102,7 +108,6 @@ public class QuestionController {
         questionService.addChoice(choice);
         System.out.println("choice id = "+choice.getId());
         mv.addObject("questionId", choice.getId());
-
         return mv;
     }
 

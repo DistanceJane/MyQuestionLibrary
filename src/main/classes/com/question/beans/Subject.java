@@ -12,6 +12,8 @@ public class Subject {
     private String subjectName;
 
     private List<Chapter> chapters;
+    // 是否导入
+    private int export;
 
     public Subject() {
     }
@@ -38,6 +40,14 @@ public class Subject {
 
     public void setChapters(List<Chapter> chapters) {
         this.chapters = chapters;
+    }
+
+    public int getExport() {
+        return export;
+    }
+
+    public void setExport(int export) {
+        this.export = export;
     }
 
     @Override

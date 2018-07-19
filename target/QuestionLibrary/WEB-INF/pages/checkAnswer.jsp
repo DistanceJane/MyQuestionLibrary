@@ -21,6 +21,7 @@
     <title>试卷练习</title>
 </head>
 <body>
+<%@include file="nav.jsp"%>
 <div class="custom-body">
     <div class="custom-container">
         <div class="custom-panel">
@@ -62,15 +63,14 @@
         </div>
     </div>
 </div>
+<%@include file="footer.jsp"%>
 </body>
 <script>
-
     $(document).ready(function () {
        showQuestion(1);
     });
 
     function showQuestion(no){
-        alert(no);
         $("#question_panel").load("${pageContext.request.contextPath}/paper/showAnswer.do?questionNo=" + no);
     }
 </script>

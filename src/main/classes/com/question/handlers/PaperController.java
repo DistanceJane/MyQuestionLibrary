@@ -5,6 +5,7 @@ import com.question.service.*;
 import com.question.util.CheckQuestion;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,7 +40,7 @@ public class PaperController {
         List<Integer> judgementIdList = null;// 符合条件的判断题Id列表
         List<Integer> shorterIdList = null; // 符合条件的简答题Id列表
         if(origin == 0){// 题目仅来源错题
-            // 从个人错题库中获取符合条件的试题id集合
+            // 从个人错题库中获取符合条件的试题id集合,获得questionId
             List<Integer> failChoiceIdList = paperService.listFailChoiceUnderUser(user.getId());
             List<Integer> failJudgementIdList = paperService.listFailJudgementUnderUser(user.getId());
             List<Integer> failShorterIdList = paperService.listFailShorterUnderUser(user.getId());
@@ -75,8 +76,19 @@ public class PaperController {
         List<Judgement> tempJudgements = paperService.assembleJudgementUnderPaper(judgements, number);
         List<Shorter> tempShorts = paperService.assembleShorterUnderPaper(shorts, number);
         // 获取library
-        Choice choice1 = tempChoices.get(0);
-        Chapter chapter = subjectService.showChapterByChoice(choice1.getChapterId());
+        int chapterId1 = 1;
+        if(tempChoices.size() > 0) {
+            Choice choice1 = tempChoices.get(0);
+            chapterId1 = choice1.getChapterId();
+        }
+        if(tempJudgements.size() > 0){
+            Judgement judgement = tempJudgements.get(0);
+            chapterId1 = judgement.getChapterId();
+        }if(tempShorts.size() >0){
+            Shorter shorter = tempShorts.get(0);
+            chapterId1 = shorter.getChapterId();
+        }
+        Chapter chapter = subjectService.showChapterByChoice(chapterId1);
         Subject subject = subjectService.showSubjectByChapter(chapter.getSubjectId());
         Library library = libraryService.selectLibraryByUserAndSubject(user.getId(), subject.getId());
         // 第三步：创建一张试卷
@@ -103,17 +115,7 @@ public class PaperController {
         List<ShorterQuestion> shorterQuestions = paperService.listShorterQuestionUnderPaper(paperId);
 
         Subject subject = subjectService.showSubjectDetail(subjectId);
-//        System.out.println("生成试题如下-----------------");
-//        for(ChoiceQuestion cq : choiceQuestions){
-//            System.out.println(cq);
-//        }
-//        for(JudgementQuestion jq : judgementQuestions){
-//            System.out.println(jq);
-//        }
-//        for(ShorterQuestion sq : shorterQuestions){
-//            System.out.println(sq);
-//        }
-//        System.out.println("-----------------------------");
+
 
         // 将试卷信息存入session
         session.setAttribute("subject", subject.getSubjectName());
@@ -137,30 +139,24 @@ public class PaperController {
         int shorterNum = shorterQuestions.size() + judgementNum;
         mv.addObject("count", shorterNum);
         // 如果question大于number，则试题已做完。
-        System.out.println("choiceNum = " + choiceNum);
-        System.out.println("judgementNum = " + judgementNum);
-        System.out.println("shorterNum = " + shorterNum);
         if(questionNo <= choiceNum){ // 选择题
             ChoiceQuestion choiceQuestion = choiceQuestions.get(questionNo -1);
             // 加载对应的选择题
             Choice choice = questionService.showChoiceDetail(choiceQuestion.getChoiceId());
             choice.setId(choiceQuestion.getId());// 将试卷试题id存为questionId
             mv.addObject("choice", choice);
-            System.out.println("选择题---->" + choice);
             mv.addObject("type", 1);
         }else if((questionNo > choiceNum) && (questionNo <=  judgementNum)){ // 判断题
             JudgementQuestion judgementQuestion = judgementQuestions.get(questionNo - choiceNum-1);
             Judgement judgement = questionService.showJudgementDetail(judgementQuestion.getJudgementId());
             judgement.setId(judgementQuestion.getId());// 将试卷试题id存为questionId
             mv.addObject("judgement", judgement);
-            System.out.println("判断题---->" + judgement);
             mv.addObject("type", 2);
         }else if((questionNo > judgementNum) && (questionNo <= shorterNum)){ // 简答题
             ShorterQuestion shorterQuestion = shorterQuestions.get(questionNo - judgementNum - 1);
             Shorter shorter = questionService.showShorterDetail(shorterQuestion.getShorterId());
             shorter.setId(shorterQuestion.getId());
             mv.addObject("shorter", shorter);
-            System.out.println("简答题---->" + shorter);
             mv.addObject("type", 3);
         }else{
             mv.setViewName("redirect:check.do");
@@ -203,7 +199,6 @@ public class PaperController {
         ModelAndView mv = new ModelAndView("redirect:test.do");
         ShorterQuestion shorterQuestion = paperService.showShorterQuestion(questionId);
         shorterQuestion.setMyAnswer(myAnswer);
-        System.out.println("简答题答案===============》"+shorterQuestion);
         paperService.commitShorterAnswer(shorterQuestion);
         model.addAttribute("questionNo", questionNo + 1);
         return mv;
@@ -212,6 +207,7 @@ public class PaperController {
     @RequestMapping("/check.do")
     public ModelAndView checkPaper(HttpSession session){
         ModelAndView mv = new ModelAndView("/WEB-INF/pages/checkAnswer.jsp");
+        User user = (User) session.getAttribute("user");
         // 从session中获取刚才做的题目
         List<ChoiceQuestion> choiceQuestions = (List<ChoiceQuestion>) session.getAttribute("choiceQuestions");
         List<JudgementQuestion> judgementQuestions = (List<JudgementQuestion>) session.getAttribute("judgementQuestions");
@@ -230,6 +226,21 @@ public class PaperController {
         for(int i = 0; i < checkQuestionList.size(); i++){
             checkQuestionList.get(i).setQuestionNo(i+1);
         }
+        Paper paper1 = paperService.selectPaperById(paperId);
+        // 将错题添加到错题集中
+        for(CheckQuestion cq : checkQuestionList){
+            if(cq.getCorrect() == 0){//错题
+                Fail fail = new Fail();
+                fail.setTypeId(cq.getType());
+                fail.setQuestionId(cq.getId());
+                fail.setUserId(user.getId());
+                paperService.addFail(fail);
+                // 试题库的统计增加
+            }else{
+                libraryService.updateLibraryPassQuantity(paper1.getLibraryId());
+            }
+        }
+        libraryService.updateLibraryDoneQuantity(paper1.getLibraryId(), shorterNum);
         // 统计总分
         int scoreCount = paperService.countPaperScore(checkQuestionList);
         mv.addObject("scoreCount",scoreCount);
@@ -256,29 +267,19 @@ public class PaperController {
         System.out.println("查看答案: questionNo = " + questionNo);
         ModelAndView mv = new ModelAndView("/WEB-INF/pages/questionDetail.jsp");
         List<CheckQuestion> questions = (List<CheckQuestion>) session.getAttribute("checkQuestions");
-        System.out.println("11111111111111111111111111111111111");
+
         CheckQuestion checkQuestion = questions.get(questionNo - 1);
         int type = checkQuestion.getType();
         int questionId = checkQuestion.getQuestionId();
         int id = checkQuestion.getId();
-        System.out.println("type = " + type);
-        System.out.println("id = " + id);
-        System.out.println("2222222222222222222222");
         if(type == 1){
-            System.out.println("111-------------------------");
             Choice choice = questionService.showChoiceDetail(questionId);
-            for(ChoiceOption option : choice.getOptions()){
-                System.out.println(option);
-            }
             mv.addObject("choice", choice);
             // 获取试卷上当时自己的答案
             ChoiceQuestion choiceQuestion = paperService.showChoiceQuestion(id);
-            System.out.println(choiceQuestion);
             mv.addObject("userAnswer", choiceQuestion.getMyAnswer());
             mv.addObject("type", 1);
-            System.out.println("choice-------------------------");
         }else if(type == 2){
-            System.out.println("222-------------------------");
             Judgement judgement = questionService.showJudgementDetail(questionId);
             System.out.println(judgement);
             mv.addObject("judgement", judgement);
@@ -286,9 +287,7 @@ public class PaperController {
             JudgementQuestion judgementQuestion = paperService.showJudgementQuestion(id);
             mv.addObject("userAnswer", judgementQuestion.getMyAnswer());
             mv.addObject("type", 2);
-            System.out.println("judgement-------------------------");
         }else{
-            System.out.println("333-------------------------");
             Shorter shorter = questionService.showShorterDetail(questionId);
             System.out.println(shorter);
             mv.addObject("shorter", shorter);
@@ -296,9 +295,7 @@ public class PaperController {
             ShorterQuestion shorterQuestion = paperService.showShorterQuestion(id);
             mv.addObject("userAnswer", shorterQuestion.getMyAnswer());
             mv.addObject("type", 3);
-            System.out.println("shorter-------------------------");
         }
-        System.out.println("type = " + type);
         Note note = new Note();
         note.setTypeId(type);
         note.setQuestionId(id);
@@ -306,6 +303,52 @@ public class PaperController {
         List<Note> notes = noteService.listNoteUnderQuestion(note);
         mv.addObject("notes",notes);
         mv.addObject("noteCount",notes.size());
+        return mv;
+    }
+
+
+    @RequestMapping("/detail.do")
+    public ModelAndView showPaperDetails(int paperId){
+        ModelAndView mv = new ModelAndView("/WEB-INF/pages/paperDetail.jsp");
+        List<ChoiceQuestion> choiceQuestions = paperService.showChoiceQuestionUnderPaper(paperId);
+        for(ChoiceQuestion cq : choiceQuestions){
+            Choice choice = questionService.showChoiceDetail(cq.getChoiceId());
+            cq.setChoice(choice);
+        }
+        List<JudgementQuestion> judgementQuestions = paperService.showJudgementQuestionUnderPaper(paperId);
+        for(JudgementQuestion jq : judgementQuestions){
+            Judgement judgement = questionService.showJudgementDetail(jq.getJudgementId());
+            jq.setJudgement(judgement);
+        }
+        List<ShorterQuestion> shorterQuestions = paperService.showShorterQuestionUnderPaper(paperId);
+        for(ShorterQuestion sq : shorterQuestions){
+            Shorter shorter = questionService.showShorterDetail(sq.getShorterId());
+            sq.setShorter(shorter);
+        }
+        mv.addObject("choiceQuestions", choiceQuestions);
+        mv.addObject("judgementQuestions", judgementQuestions);
+        mv.addObject("shorterQuestions", shorterQuestions);
+        return mv;
+    }
+    @RequestMapping("/continue.do")
+    public ModelAndView goOn(int paperId, HttpSession session, Model model){
+        ModelAndView mv = new ModelAndView("redirect:test.do");
+        // 获取该试卷下的所有试题
+        List<ChoiceQuestion> choiceQuestions = paperService.listChoiceQuestionUnderPaper(paperId);
+        List<JudgementQuestion> judgementQuestions = paperService.listJudgementQuestionUnderPaper(paperId);
+        List<ShorterQuestion> shorterQuestions = paperService.listShorterQuestionUnderPaper(paperId);
+
+        Paper paper = paperService.selectPaperById(paperId);
+        Library library = libraryService.selectLibraryById(paper.getLibraryId());
+        Subject subject = subjectService.showSubjectDetail(library.getSubjectId());
+
+        // 将试卷信息存入session
+        session.setAttribute("subject", subject.getSubjectName());
+        session.setAttribute("paperId", paperId);
+        session.setAttribute("choiceQuestions",choiceQuestions);
+        session.setAttribute("judgementQuestions", judgementQuestions);
+        session.setAttribute("shorterQuestions", shorterQuestions);
+        model.addAttribute("questionNo", 1);
         return mv;
     }
 

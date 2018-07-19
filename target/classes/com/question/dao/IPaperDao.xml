@@ -110,7 +110,7 @@
 
     <!--获取用户的错题集某一类型试题的id集-->
     <select id="fetchQuestionIdListByUser" resultType="int">
-        select id from fail where typeId = #{typeId} and userId = #{userId}
+        select questionId from fail where typeId = #{typeId} and userId = #{userId}
     </select>
 
     <!--修改选择题的答案-->

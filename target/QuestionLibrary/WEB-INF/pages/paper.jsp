@@ -51,12 +51,26 @@
                                             class="layui-icon layui-icon-flag"
                                             style="font-size: 16px"></i>得分:${paper.score}
                                     </div>
+                                    <div class="custom-horizon-box">
+                                        <div class="custom-horizon-center">
+                                        <span class="layui-breadcrumb custom-show" lay-separator="|">
+                                            <form method="post" action="${pageContext.request.contextPath}/paper/detail.do">
+                                                <input type="hidden" name="paperId" value="${paper.id}">
+                                                <button type="submit" class="layui-btn layui-btn-xs">查看试卷</button>
+                                            </form>
+
+                                        </span>
+                                        </div>
+                                    </div>
                                 </c:when>
                                 <c:otherwise>
                                 <div class="custom-horizon-box">
                                     <div class="custom-horizon-center">
                                         <span class="layui-breadcrumb custom-show" lay-separator="|">
-                                            <a href="">继续完成</a>
+                                            <form method="post" action="${pageContext.request.contextPath}/paper/continue.do">
+                                                <input type="hidden" name="paperId" value="${paper.id}">
+                                                <button type="submit" class="layui-btn layui-btn-xs layui-btn-danger">继续完成</button>
+                                            </form>
                                         </span>
                                     </div>
                                 </div>

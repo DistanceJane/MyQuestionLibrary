@@ -44,12 +44,12 @@
                                             <div class="custom-shift-down-process">
                                                 <div class="layui-progress ">
                                                     <div class="layui-progress-bar layui-bg-red"
-                                                         lay-percent="15/100"></div>
+                                                         lay-percent="${chapter.sumQuestion}/${chapter.sumQuestion + 100}"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="layui-col-md3">
-                                            <div class="custom-text-center">36&nbsp;/&nbsp;378</div>
+                                            <div class="custom-text-center">&nbsp;${chapter.sumQuestion}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -93,10 +93,10 @@
 
                         <span style="line-height: 60px">已选择:</span>
                         <span class="layui-breadcrumb" lay-separator="|">
-                                                    <a href="">编程语言</a>
+                                                    <a href="">Java语言程序设计</a>
                                                     <a href="">三星难度</a>
                                                     <a href="">错题+新题</a>
-                                                    <a href="">30道题</a>
+                                                    <a href="">10道题</a>
                                         </span>
                     </div>
                     <div class="layui-col-md2">

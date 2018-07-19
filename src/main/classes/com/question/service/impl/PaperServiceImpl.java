@@ -76,13 +76,24 @@ public class PaperServiceImpl implements IPaperService {
         for(Fail fail : fails){
             Question question = null;
             if(fail.getTypeId() ==  1){ // 选择题
-                question = questionDao.selectChoiceById(fail.getQuestionId());
+                // 找到当时的试卷上的题目的答案
+                ChoiceQuestion cq = paperDao.selectChoiceQuestionById(fail.getQuestionId());
+                System.out.println(cq);
+                question = questionDao.selectChoiceById(cq.getChoiceId());
+                System.out.println(question);
             }else if(fail.getTypeId() == 2){ // 填空题
-                question = questionDao.selectJudgementById(fail.getQuestionId());
+                JudgementQuestion jq = paperDao.selectJudgementQuestionById(fail.getQuestionId());
+                System.out.println(jq);
+                question = questionDao.selectJudgementById(jq.getJudgementId());
+                System.out.println(question);
             }else { // 简答题
-                question = questionDao.selectShorterById(fail.getQuestionId());
+                ShorterQuestion sq = paperDao.selectShorterQuestionById(fail.getQuestionId());
+                System.out.println(sq);
+                question = questionDao.selectShorterById(sq.getShorterId());
+                System.out.println(question);
             }
             question.setTypeId(fail.getTypeId());
+            question.setQuestionId(fail.getQuestionId());
             questions.add(question);
         }
 
@@ -118,29 +129,44 @@ public class PaperServiceImpl implements IPaperService {
 
     @Override
     public List<Integer> listFailChoiceUnderUser(Integer id) {
+        List<Integer> list = new ArrayList<>();
         Map<String, Object> map = new HashMap<>();
         map.put("type", 1);
         map.put("userId", id);
         List<Integer> idList = paperDao.fetchQuestionIdListByUser(map);
-        return idList;
+        for(int i : idList){
+            ChoiceQuestion choiceQuestion = paperDao.selectChoiceQuestionById(i);
+            list.add(choiceQuestion.getChoiceId());
+        }
+        return list;
     }
 
     @Override
     public List<Integer> listFailJudgementUnderUser(Integer id) {
+        List<Integer> list = new ArrayList<>();
         Map<String, Object> map = new HashMap<>();
         map.put("type", 2);
         map.put("userId", id);
         List<Integer> idList = paperDao.fetchQuestionIdListByUser(map);
-        return idList;
+        for(int i : idList){
+            JudgementQuestion judgementQuestion = paperDao.selectJudgementQuestionById(i);
+            list.add(judgementQuestion.getJudgementId());
+        }
+        return list;
     }
 
     @Override
     public List<Integer> listFailShorterUnderUser(Integer id) {
+        List<Integer> list = new ArrayList<>();
         Map<String, Object> map = new HashMap<>();
         map.put("type", 3);
         map.put("userId", id);
         List<Integer> idList = paperDao.fetchQuestionIdListByUser(map);
-        return idList;
+        for(int i : idList){
+            ShorterQuestion shorterQuestion = paperDao.selectShorterQuestionById(i);
+            list.add(shorterQuestion.getShorterId());
+        }
+        return list;
     }
 
     @Override
@@ -440,5 +466,38 @@ public class PaperServiceImpl implements IPaperService {
             ((LinkedList<CheckQuestion>) list).addLast(cq);
         }
         return list;
+    }
+
+    @Override
+    @Transactional
+    public List<ChoiceQuestion> showChoiceQuestionUnderPaper(int id) {
+        List<ChoiceQuestion> choiceQuestions = paperDao.listChoiceQuestionUnderPaper(id);
+        return choiceQuestions;
+    }
+
+    @Override
+    @Transactional
+    public List<JudgementQuestion> showJudgementQuestionUnderPaper(int id) {
+        List<JudgementQuestion> judgementQuestions = paperDao.listJudgementQuestionUnderPaper(id);
+        return judgementQuestions;
+    }
+
+    @Override
+    @Transactional
+    public List<ShorterQuestion> showShorterQuestionUnderPaper(int id) {
+        List<ShorterQuestion> shorterQuestions = paperDao.listShorterQuestionUnderPaper(id);
+        return shorterQuestions;
+    }
+
+    @Override
+    @Transactional
+    public void addFail(Fail fail) {
+        paperDao.insertFail(fail);
+    }
+
+    @Override
+    public Paper selectPaperById(int paperId) {
+        Paper paper = paperDao.selectPaperById(paperId);
+        return paper;
     }
 }

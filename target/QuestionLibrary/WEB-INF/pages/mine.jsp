@@ -41,10 +41,10 @@
                             <div class="layui-col-md4"><p>孤独是人生该有的觉悟。</p></div>
                             <div class="layui-col-md2 text-center">
                                 <div class="layui-form-item">
-                                    <button class=" layui-btn layui-btn-lg">个人详情</button>
+                                    <a href="#info" class=" layui-btn layui-btn-lg" id="myInfo">个人详情</a>
                                 </div>
                                 <div class="layui-form-item">
-                                    <button class=" layui-btn layui-btn-lg" href="#menu-setting">编辑资料</button>
+                                    <a href="#setInfo" class=" layui-btn layui-btn-lg" id="setInfo">编辑资料</a>
                                 </div>
                             </div>
                         </div>
@@ -60,14 +60,13 @@
                         <div class="layui-card">
                             <div class="layui-card-header">
                                 <a id="menu-home" href="#home" style="text-decoration: none">
-                                    <img class="custom-left-menu-img" src="${pageContext.request.contextPath}/images/home.png">首页
+                                    <img class="custom-left-menu-img" src="${pageContext.request.contextPath}/images/home.png">成就
                                 </a>
                             </div>
                             <div class="layui-card-header">
                                 <a id="menu-library" href="#library" style="text-decoration: none">
                                     <img class="custom-left-menu-img" src="${pageContext.request.contextPath}/images/lib.png">题库
                                 </a>
-
                             </div>
                             <div class="layui-card-header">
                                 <a id="menu-exercise" href="#exercise" style="text-decoration: none">
@@ -159,6 +158,14 @@
 
         $("#menu-setting").click(function (){
             $("#container").load("${pageContext.request.contextPath}/personal/setting.do");
+        });
+
+        $("#myInfo").click(function (){
+            $("#container").load("${pageContext.request.contextPath}/personal/info.do");
+        });
+
+        $("#setInfo").click(function (){
+            $("#container").load("${pageContext.request.contextPath}/personal/setInfo.do");
         });
     }
 </script>

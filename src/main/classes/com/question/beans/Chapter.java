@@ -12,6 +12,10 @@ public class Chapter {
     // 所属学科id
     private Integer subjectId;
 
+    // 题目总数
+    private Integer sumQuestion;
+
+
     public Chapter() {
     }
 
@@ -47,12 +51,22 @@ public class Chapter {
         this.subjectId = subjectId;
     }
 
+    public Integer getSumQuestion() {
+        return sumQuestion;
+    }
+
+    public void setSumQuestion(Integer sumQuestion) {
+        this.sumQuestion = sumQuestion;
+    }
+
+
     @Override
     public String toString() {
         return "Chapter{" +
                 "id=" + id +
                 ", chapterName='" + chapterName + '\'' +
                 ", subjectId=" + subjectId +
+                ", sumQuestion=" + sumQuestion +
                 '}';
     }
 }

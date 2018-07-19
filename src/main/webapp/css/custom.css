@@ -2,7 +2,7 @@
 .custom-body {
     padding-top: 100px;
     background: #eeeeee;
-    min-height: 580px;
+    min-height: 600px;
 }
 
 .custom-fix-top{
@@ -653,6 +653,13 @@ body{
 
 .custom-cube-red:hover, .custom-cube-red:focus, .custom-cube-red:active {
     height:45px;
+}
+
+.custom-subject-title{
+    margin-left: 600px;
+    text-align: center;
+    background-color: #b0b0b0;
+    color: #ffffff;
 }
 
 

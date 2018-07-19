@@ -122,14 +122,14 @@
                                     <div id="email-msg" class="custom-help-text"></div>
                                 </div>
 
-                                <div class="layui-form-item custom-horizon-box">
-                                    <label class="layui-form-label custom-label-width-normal">验证码</label>
-                                    <div class="layui-input-inline">
-                                            <input id="register-checkedCode" type="text" name="checkedCode"
-                                                   placeholder="验证码" autocomplete="off" class="layui-input">
-                                    </div>
-                                    <button class="layui-btn">获取验证码</button>
-                                </div>
+                                <%--<div class="layui-form-item custom-horizon-box">--%>
+                                    <%--<label class="layui-form-label custom-label-width-normal">验证码</label>--%>
+                                    <%--<div class="layui-input-inline">--%>
+                                            <%--<input id="register-checkedCode" type="text" name="checkedCode"--%>
+                                                   <%--placeholder="验证码" autocomplete="off" class="layui-input">--%>
+                                    <%--</div>--%>
+                                    <%--<button class="layui-btn">获取验证码</button>--%>
+                                <%--</div>--%>
 
                                 <div class="layui-form-item custom-horizon-box">
                                     <button id="register-submit" class="layui-btn custom-width-half" lay-submit lay-filter="register">立即注册</button>

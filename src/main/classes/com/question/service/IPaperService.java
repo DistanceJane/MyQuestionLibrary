@@ -237,4 +237,39 @@ public interface IPaperService {
      * @return
      */
     List<CheckQuestion> mergeCheckQuestionList(List<CheckQuestion> checkChoiceQuestionList, List<CheckQuestion> checkJudgementQuestionList, List<CheckQuestion> checkShorterQuestionList);
+
+    /**
+     * 获取试卷下的所有选择题
+     * @param id
+     * @return
+     */
+    List<ChoiceQuestion> showChoiceQuestionUnderPaper(int id);
+
+
+    /**
+     * 获取试卷下的所有判断题
+     * @param id
+     * @return
+     */
+    List<JudgementQuestion> showJudgementQuestionUnderPaper(int id);
+
+    /**
+     * 获取试卷下的所有简答题
+     * @param id
+     * @return
+     */
+    List<ShorterQuestion> showShorterQuestionUnderPaper(int id);
+
+    /**
+     * 添加错题
+     * @param fail
+     */
+    void addFail(Fail fail);
+
+    /**
+     * 根据id查找试卷
+     * @param paperId
+     * @return
+     */
+    Paper selectPaperById(int paperId);
 }

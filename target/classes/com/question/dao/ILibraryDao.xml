@@ -5,13 +5,22 @@
 <mapper namespace="com.question.dao.ILibraryDao">
     <!--新添加一门学科的试题库-->
     <insert id="insertLibrary">
-        insert into library(subjectId, userId) values (#{subject.id}, #{user.id})
+        insert into library(subjectId, userId) values (#{subjectId}, #{userId})
     </insert>
-
+    <!--根据id查询试题库-->
     <select id="selectLibraryById" resultType="Library">
         select * from library where id = #{id}
     </select>
 
+    <!--更新试题库信息-->
+    <update id="updateLibrary">
+        update library set questionQuantity = #{questionQuantity}, passQuantity = #{passQuantity}, failQuantity = #{failQuantity}
+        where id = #{id}
+    </update>
+    <!--根据id删除试题库-->
+    <delete id="deleteLibrary">
+        delete from library where id = #{id}
+    </delete>
     <!--获取用户的试题库列表-->
     <select id="listLibraryUnderUser" resultType="Library">
         select * from library where userId = #{id}

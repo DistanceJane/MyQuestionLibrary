@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: gmcc
@@ -7,7 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="layui-card">
     <div class="layui-card-body">
         <div class="layui-row">
@@ -94,7 +94,7 @@
                                 <p class="custom-text-center">${question.subject.subjectName}</p>
                             </div>
                             <div class="layui-col-md3">
-                                <a href="${pageContext.request.contextPath}/question/${question.typeId}/${question.id}/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
+                                <a href="${pageContext.request.contextPath}/question/${question.typeId}/${question.id}/${question.questionId}/detail.do" class="layui-btn layui-btn-sm pull-right">查看详情</a>
                             </div>
                         </div>
                     </div>
@@ -117,6 +117,8 @@
         var element = layui.element;
         var form = layui.form;
         var laypage = layui.laypage;
+
+        form.render();
         //…
 
         //执行一个laypage实例

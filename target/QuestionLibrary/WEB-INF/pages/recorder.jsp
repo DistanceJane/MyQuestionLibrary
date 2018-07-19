@@ -33,31 +33,6 @@
             <div class="layui-col-md3">
                 <div class="layui-card">
                     <div class="layui-card-header">
-                        <div class="custom-text-lg">128</div>
-                    </div>
-                    <div class="layui-card-body">
-                        <div class="custom-text">题做错</div>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-col-md3">
-                <div class="layui-card">
-                    <div class="layui-card-header">
-                        <div class="custom-text-lg">200</div>
-                    </div>
-                    <div class="layui-card-body">
-                        <div class="custom-text">道题等你</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="layui-card-header">互动情况</div>
-    <div class="layui-card-body">
-        <div class="layui-row">
-            <div class="layui-col-md3">
-                <div class="layui-card">
-                    <div class="layui-card-header">
                         <div class="custom-text-lg">98</div>
                     </div>
                     <div class="layui-card-body">
@@ -68,75 +43,10 @@
             <div class="layui-col-md3">
                 <div class="layui-card">
                     <div class="layui-card-header">
-                        <div class="custom-text-lg">12</div>
-                    </div>
-                    <div class="layui-card-body">
-                        <div class="custom-text">条被赞</div>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-col-md3">
-                <div class="layui-card">
-                    <div class="layui-card-header">
                         <div class="custom-text-lg">128</div>
                     </div>
                     <div class="layui-card-body">
-                        <div class="custom-text">次赞数</div>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-col-md3">
-                <div class="layui-card">
-                    <div class="layui-card-header">
-                        <div class="custom-text-lg">128</div>
-                    </div>
-                    <div class="layui-card-body">
-                        <div class="custom-text">最高获赞</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="layui-card-header">学科概况</div>
-    <div class="layui-card-body">
-        <div class="layui-row">
-            <div class="layui-col-md3">
-                <div class="layui-card">
-                    <div class="layui-card-header">
-                        <div class="custom-text-lg">8</div>
-                    </div>
-                    <div class="layui-card-body">
-                        <div class="custom-text">科添加</div>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-col-md3">
-                <div class="layui-card">
-                    <div class="layui-card-header">
-                        <div class="custom-text-lg">6</div>
-                    </div>
-                    <div class="layui-card-body">
-                        <div class="custom-text">科练过</div>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-col-md3">
-                <div class="layui-card">
-                    <div class="layui-card-header">
-                        <div class="custom-text-lg">3</div>
-                    </div>
-                    <div class="layui-card-body">
-                        <div class="custom-text">科完成</div>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-col-md3">
-                <div class="layui-card">
-                    <div class="layui-card-header">
-                        <div class="custom-text-lg">2</div>
-                    </div>
-                    <div class="layui-card-body">
-                        <div class="custom-text">科空白</div>
+                        <div class="custom-text">次获赞</div>
                     </div>
                 </div>
             </div>

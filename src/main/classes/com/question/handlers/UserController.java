@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -48,14 +49,11 @@ public class UserController {
      */
     @RequestMapping("/library.do")
     public ModelAndView showLibrary(HttpSession session){
-
         ModelAndView mv = new ModelAndView("/WEB-INF/pages/library.jsp");
         User user = (User) session.getAttribute("user");
         // 获取个人题库列表
         List<Library> libraries = libraryService.listUserLibrary(user);
         mv.addObject("libraries", libraries);
-        // 获取所有题库列表
-        List<Subject> subjects = subjectService.listAllSubject();
         return mv;
     }
 
@@ -126,6 +124,11 @@ public class UserController {
     @RequestMapping("/info.do")
     public ModelAndView showInfo(){
         return new ModelAndView("/WEB-INF/pages/info.jsp");
+    }
+
+    @RequestMapping("/setInfo.do")
+    public ModelAndView setInfo(){
+        return new ModelAndView("/WEB-INF/pages/setInfo.jsp");
     }
 
     /**

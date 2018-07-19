@@ -29,4 +29,38 @@ public interface ILibraryService {
      * @return
      */
     Library selectLibraryByUserAndSubject(Integer id, Integer id1);
+
+    /**
+     * 添加试题库
+     * @param library
+     */
+    void addLibrary(Library library);
+
+    /**
+     * 移除个人试题库
+     * @param libraryId
+     */
+    void deleteLibrary(int libraryId);
+
+
+    /**
+     * 通过题数加1
+     * @param libraryId
+     */
+    void updateLibraryPassQuantity(Integer libraryId);
+
+
+    /**
+     * 总做题加num
+     * @param libraryId
+     * @param shorterNum
+     */
+    void updateLibraryDoneQuantity(Integer libraryId, int shorterNum);
+
+    /**
+     * 根据id查找题库
+     * @param libraryId
+     * @return
+     */
+    Library selectLibraryById(Integer libraryId);
 }

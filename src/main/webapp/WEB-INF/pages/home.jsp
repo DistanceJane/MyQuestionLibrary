@@ -198,6 +198,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="layui-col-md4">
                 <div class="layui-row">
                     <div class="custom-panel">
@@ -205,12 +206,12 @@
                             <div class="layui-card-body">
                                 <div class="layui-row">
                                     <div class="layui-col-md3">
-                                        <p class="custom-text-lg-left"><strong>周六</strong></p>
-                                        <p class="custom-text-left">06-30</p>
+                                        <p class="custom-text-lg-left"><strong>周二</strong></p>
+                                        <p class="custom-text-left">07-17</p>
                                     </div>
                                     <div class="layui-col-md6">
                                         <p class="custom-text-sm-left">欢迎回来!</p>
-                                        <p>上次登录时间:06-29</p>
+                                        <p>上次登录时间:07-17</p>
                                     </div>
                                     <div class="layui-col-md3">
                                         <div class="custom-box">
@@ -258,19 +259,19 @@
                                     <div class="layui-row">
                                         <div class="layui-col-md3">
                                             <p class="text-center">刷题</p>
-                                            <p class="text-center">10086</p>
+                                            <p class="text-center">${countLibrary.doneQuantity}</p>
                                         </div>
                                         <div class="layui-col-md3">
                                             <p class="text-center">通过</p>
-                                            <p class="text-center">8888</p>
+                                            <p class="text-center">${countLibrary.passQuantity}</p>
                                         </div>
                                         <div class="layui-col-md3">
                                             <p class="text-center">笔记</p>
-                                            <p class="text-center">188</p>
+                                            <p class="text-center">10</p>
                                         </div>
                                         <div class="layui-col-md3">
                                             <p class="text-center">获赞</p>
-                                            <p class="text-center">25535</p>
+                                            <p class="text-center">28</p>
                                         </div>
                                     </div>
                                 </div>
